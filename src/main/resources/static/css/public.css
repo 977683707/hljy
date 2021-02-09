@@ -1,0 +1,19 @@
+@charset "utf-8";
+/**
+ * [OElove] (C)2010-2099 phpcoo.com Inc.biz
+ * This is not a freeware, use is subject to license terms
+ * $Id: css.css LastTime 19:16 2020/11/12 Design by wz$
+*/
+.oe_pay li.alipay i{color:#3c8aff;}
+.oe_pay li.tenpay i{color:#22c5bf;}
+.oe_pay li.wangyin i{color:#228ac5;}
+.oe_pay li.weixinpay i{color:#22c535;}
+.oe_pay li em{bottom: -2px; display: none;}
+.oe_pay li.current{border:1px solid #f40; color:#f40;}
+.oe_pay li.current em{display: inline-block; color:#f40;}
+.oe_yue i.icon-check-box-o{display: none; font-size: 23px;}
+.oe_yue i.icon-check-box{display: inline-block;}
+.oe_yue.current i.icon-check-box-o{display: inline-block;}
+.oe_yue.current i.icon-check-box{display: none;}
+.bo_eb_i{border: 1px solid #ebebeb!important;}
+

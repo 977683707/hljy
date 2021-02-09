@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <title>征婚启事-列表-OElove婚恋系统</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <link rel="stylesheet" th:href="@{/css/oeui.css}">
+    <link rel="stylesheet" th:href="@{/css/iconfont.css}">
+    <link rel="stylesheet" th:href="@{/css/iconfont2.css}">
+    <link rel="stylesheet" th:href="@{/css/css.css}">
+    <link rel="stylesheet" th:href="@{/css/common.css}">
+    <script th:src="@{/js/jquery3.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/jquery-3.3.1.js}"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("#tcdl").click(function () {
+                $.post("/user/tcdl",{"a":"y"},function (data) {
+                    if (data.flag) {
+                        location.href = "/user/index";
+                    }
+                },"json");
+            });
+        });
+    </script>
+    <script>
+        if (!window.Promise) {
+            var _hmt = _hmt || [];
+            (function() {
+                var hm = document.createElement("script");
+                hm.src = "/js/promise.polyfill.js";
+                var s = document.getElementsByTagName("script")[0];
+                s.parentNode.insertBefore(hm, s);
+            })();
+        }
+    </script>
+    <meta name="author" content="OEdev">
+    <meta name="generator" content="OElove">
+    <style type="text/css">
+        .bg_main,.hed_sp span.current,.hed_sp span:hover,.ban_dian span.current,.oe_rank span.current::after,.oe_page a.current, .oe_page a._current,.oeui_btn,.item a.current, .item a:hover,.oeui_checkbox.checked .checkbox,.maker_dl:hover span,.oe_tag span.current,.ser_top dl dt span.current,.oe_indextag span.current{background: #ff4c71!important;}
+        .color_main,.oe_menu ul li.current a,.oe_rank span.current,.oe_page a:hover,.pre_type span.current, .pre_type span.current a,.oeui_dist .tab_nav .item.current,.oeui_dist .tab_content .item .box:hover,.oeui_birthday_picker .tab_nav .item.current{color:#ff4c71!important;}
+        .bo_b2main {border-bottom: 2px solid #ff4c71!important;}
+        .bo_main,.oeui_radio.checked .radio,.oeui_btn,.oeui_btn,.oeui_checkbox.checked .checkbox{border:1px solid #ff4c71!important;}
+        .oeui_radio .radio span,.pre_type span.current::after,.oeui_dist .tab_nav .item.current::after,.oeui_dist .tab_content .item .box.current,.oeui_switch.checked .switch,.oeui_modal .wrap .btn_group button.confirm,.oeui_birthday_picker .tab_nav .item.current::after,.oe_rank span:hover:after{background-color:#ff4c71!important; }
+        .story_dl:hover,.bo_bmain{border-bottom: 1px solid #ff4c71!important;}
+        .oe_page a.current, .oe_page a._current,.oe_page a:hover,.oeui_checkbox:hover .checkbox,.oeui_radio:hover .radio,.oeui_modal .wrap .btn_group button.confirm,.oe_tag span.current,.ser_top dl dd input,.oe_indextag span.current{border-color:#ff4c71!important;}
+
+        /* 菜单导航 */
+        .oe_menu2 li{float: left;box-sizing:border-box;  color:#fff4e1;}
+        .oe_menu2 li a.mn,.oe_menu2 li div.drops a{color:#fff4e1;}
+        .oe_menu2 li a.mn{display: inline-block; padding:0px 20px; font-size: 16px; position: relative; color:#fff4e1;}
+        .oe_menu2 li a.mn::after{content: ''; display: none;  position: absolute; width: 20px; bottom: 5px; height: 4px; background:#fff4e1; left:50%; margin-left: -10px; border-radius:10px;}
+        .oe_menu2 li.current a.mn::after, .oe_menu2 li a.mn:hover::after{ display: inline-block;}
+
+    </style>
+</head>
+<body class="bg_body">
+<div class="w100per min_1200 bg_main pr z300 h65">
+    <div class="w1200">
+        <div class="fl">
+            <a>
+                <img class="vam" style="max-height:65px;" alt="OElove婚恋系统" title="交友系统_交友源码_交友程序_婚恋相亲系统OElove婚恋系统" th:src="@{/img/9dea1a3525e3502f.png}" />
+            </a>
+        </div>
+        <div class="h65" style="margin-left: 200px;">
+            <ul class="oe_menu2 lh65">
+                <li><a class="mn" th:href="@{/user/index}">首页<i></i></a></li>
+                <li><a class="mn" th:href="@{/user/jpsy}">交朋识友<i></i></a></li>
+                <li><a class="mn" th:href="@{/activity/activity1}">热门活动<i></i></a></li>
+                <li class="current"><a class="mn" th:href="@{/post/post}">情感驿站<i></i></a></li>
+                <li><a class="mn" th:href="@{/story/story}">成功故事<i></i></a></li>
+                <li><a class="mn" th:href="@{/test/testpaper1}">心里测试</a></li>
+                <li><a class="mn" th:href="@{/partner/partner}">合作伙伴<i></i></a></li>
+                <li><a class="mn" th:href="@{/user/gywm}">关于我们</a></li>
+                <li class="pl15">
+                    <dl class="pr inline_block vam h50 lh40" f="but_hs_menus">
+                        <dt class="lh40">
+                            <p class="inline_block">
+                                <span class="img_24 br oh vam mr5"><a><img class="ob_c"  th:src="@{/{headportrait}(headportrait=${session.user.headportrait})}"></a></span><span class="span_username"><a class=" inline_block vam color_f ws" style="max-width: 70px;" th:text="${session.user.name}" >www</a></span> <i class="iconfont icon-down fz12 color_f"></i>
+                            </p>
+                        </dt>
+                        <dd class="pa  r0 bo_eb p30 bg_f oh bsb br5" style="width: 200px; top: 50px; display: none;">
+                            <div class="inline_block fz14 t_center bo_right pr30 fl w120">
+                                <div>
+                                    <a class="plr15 ws ptb5 bo_eb lh20 mb10 block" >完善资料</a>
+                                    <a class="plr15 ws ptb5 bo_eb lh20 bg_e  block" id="tcdl" rel="nofollow">退出登录</a>
+                                </div>
+                            </div>
+                        </dd>
+                    </dl>
+                </li>
+                <div class="clear"></div>
+            </ul>
+        </div>
+        <div class="clear"></div>
+    </div>
+
+    <div class="clear"></div>
+</div>
+
+<script>
+    $(function(){
+        $('[f="but_hs_menus"]').hover(
+            function(){
+                $(this).closest('li').find('dd').stop().slideDown(100);
+            },
+            function(){
+                $(this).closest('li').find('dd').stop().slideUp(100);
+            }
+        );
+        $('[f="but_hs_kuji"]').hover(
+            function(){
+                $(this).find('div').stop().slideDown(100);
+            },
+            function(){
+                $(this).find('div').stop().slideUp(100);
+            }
+        );
+    });
+</script>
+<script th:src="@{/js/guestbook.js}"></script>
+
+<div class="pr w100per min_w1200">
+    <div class="w1200 pt30 clearfix">
+        <div class="pr bsb fl mt15" style="width:1200px;">
+            <dl class="pr p20 mb20 bg_f" style="padding-left:111px;min-height:150px;" th:each="post:${posts}">
+                <dd>
+                    <h3 class="pr fz18 pr50">
+                        <a th:href="@{/post/postDetails(id=${post.id})}" target="_blank" th:text="${post.title}"></a>
+                    </h3>
+                    <p class="pt5 color_9 fz12">
+                    <h4 class="pt10 bo_bf7 mb10 pb10 color_ps fb">发布时间</h4>
+                        <span th:text="${post.time}">erwe</span>
+                    </p>
+                    <h4 class="pt10 bo_bf7 mb10 pb10 color_ps fb">作者信息</h4>
+                    <p class="clearfix fz14">
+                        <span class="fl w33per ws">
+                            <i class="color_9"> 作者：</i>
+                            <a th:text="${post.uname}"></a>
+                        </span>
+                        <span class="fl w33per ws" >
+                            <i class="color_9"> 籍贯：</i>
+                            <a th:text="${post.address}"></a>
+                        </span>
+                        <br/>
+                        <span class="fl w33per ws">
+                            <i class="color_9"> 简介：</i>
+                            <a th:text="${post.userntroduction}"></a>
+                        </span>
+                    </p>
+                    <div class="clear"></div>
+                    <h4 class="pt10 bo_bf7 mb10 pb10 color_ps fb">文章简介</h4>
+                    <p class="color_9">
+                        <a th:text="${post.ntroduction}"></a>
+                        <a style="color: #3c8aff;margin-left: 5px" th:href="@{/post/postDetails(id=${post.id})}">详情</a>
+                    </p>
+                </dd>
+            </dl>
+
+            <div class="oe_page">
+                <div class="oe_page">
+                    <a th:text="|共${total}条|"></a>
+                    <a th:text="|共${pages}页|"></a>
+                    <a th:text="|当前第${pageNum}页|"></a>
+                    <a th:href="@{/post/post(pageNum=1)}">首页</a>
+                    <a th:href="@{/post/post(pageNum=${pageNum2})}">上一页</a>
+                    <a th:href="@{/post/post(pageNum=${pageNum1})}">下一页</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="clear"></div>
+</div>
+
+
+
+<div class="w100per min_1200 pt10" style="background: #333;">
+    <div class="w1200 pt20">
+        <div class="color_9 pb10" style="border-bottom: 1px solid #3f3f3f;">
+            同城交友：
+            <a class="inline_block plr5 ws color_9" th:href="@{/user/filter1(s6='北京')}">北京</a>
+            <a class="inline_block plr5 ws color_9" th:href="@{/user/filter1(s6='广州')}">广州</a>
+            <a class="inline_block plr5 ws color_9" th:href="@{/user/filter1(s6='深圳')}">深圳</a>
+            <a class="inline_block plr5 ws color_9" th:href="@{/user/filter1(s6='上海')}">上海</a>
+            <a class="inline_block plr5 ws color_9" th:href="@{/user/filter1(s6='成都')}">成都</a>
+            <a class="inline_block plr5 ws color_9" th:href="@{/user/filter1(s6='杭州')}">杭州</a>
+            <a class="inline_block plr5 ws color_9" th:href="@{/user/filter1(s6='重庆')}">重庆</a>
+        </div>
+        <div class="t_center pt20 color_c">
+
+
+            <a class="inline_block plr8 color_c" th:href="@{/user/gywm}" rel="nofollow">关于我们</a> <i>|</i>
+
+            <a class="inline_block plr8 color_c">联系我们</a> <i>|</i>
+
+            <a class="inline_block plr8 color_c" >APP小程序</a> <i>|</i>
+            <a class="inline_block plr8 color_c" th:href="@{/user/index}" rel="nofollow">返回首页</a>
+
+        </div>
+        <style>
+            .oe_footers a{color:#ccc;}
+        </style>
+        <div class="t_center pt10 pb20 color_c oe_footers">
+            <p>
+                客服热线：020-82299259<br>
+                联系邮箱：service@phpcoo.com
+            </p>
+            <p>
+                Copyright © 2010-2021　版权所有：OElove
+            </p>
+            <p>
+                软著登字第0561018号 / <a target="_blank">粤ICP备10217863号</a>
+            </p>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div class="w100per min_w1200 ptb5 color_6 fz12 t_center" style="background: #2e2e2e;">
+    </div>
+</div>
+
+
+<!--//侧边栏 二维码 -->
+<div class="pf z100 l50per z300" style="margin-left:610px; bottom:250px;">
+    <div class="pr mb5">
+        <a f="but_right_show" class="bg_tran br2 img_50 cursor inline_block t_center" href="javascipt:;">
+            <i class="iconfont icon-weixin1 color_f lh50 fz36 ptb2"></i>
+        </a>
+        <div class="nro" style="display:none;">
+            <img class="pa" style="left:-20px;top:22px;" src="/tpl/templets/making/images/wei.png">
+            <dl class="pa bg_f bo_eb t_center ptb10" style="width:220px;left:-241px;top:-140px;">
+                <dt><img src="/data/attachment/upload/202101/07/a02b16b30f85c8c4.jpg" width="200px"></dt>
+                <dd class="pt5">
+                    <p class="fz18"><img class="vam mb5 mr5" src="/tpl/templets/making/images/wei_ico.jpg">微信</p>
+                    <span class="fz16 color_6">扫描二维码关注微信公众号</span>
+                </dd>
+            </dl>
+        </div>
+    </div>
+    <div class="pr mb5">
+        <a f="but_right_show" class="bg_tran br2 img_50 cursor inline_block t_center" href="javascipt:;">
+            <i class="iconfont icon-shouji color_f lh50 fz30"></i>
+        </a>
+        <div class="nro" style="display:none;">
+            <img class="pa" style="left:-20px;top:22px;" src="/tpl/templets/making/images/wei.png">
+            <dl class="pa bg_f bo_eb t_center ptb10" style="width:220px;left:-241px;top:-140px;">
+                <dt><img src="/data/attachment/upload/202012/22/6b98e2e6344abdba.png" width="200px"></dt>
+                <dd class="pt5">
+                    <p class="fz18"><img class="vam mb5 mr5" src="/tpl/templets/making/images/w_mobile.png"> 手机端</p>
+                    <span class="fz16 color_6">扫描二维码访问手机端</span> </dd>
+            </dl>
+        </div>
+    </div>
+</div>
+<div f="but_top_go" class="pf z300 l50per" style="margin-left:610px; bottom:195px;display: none;">
+    <div class="pr mb5">
+        <a class="bg_tran br2 img_50 cursor inline_block t_center" href="javascipt:;">
+            <i class="iconfont icon-dingwei color_f lh50 fz30"></i>
+        </a>
+    </div>
+</div>
+<script>
+    $(function () {
+        $('[f="but_right_show"]').hover(
+            function () {
+                $(this).removeClass('bg_tran').addClass('bg_main').siblings('.nro').show();
+            },
+            function () {
+                $(this).removeClass('bg_main').addClass('bg_tran').siblings('.nro').hide();
+            }
+        );
+        if ($(window).scrollTop() > 300) {
+            $("[f='but_top_go']").css('display', 'block');
+        }
+        $(window).scroll(function () {
+            if ($(window).scrollTop() > 300) {
+                $("[f='but_top_go']").css('display', 'block');
+            }
+            else {
+                $("[f='but_top_go']").css('display', 'none');
+            }
+        });
+        $(document).on('click', '[f="but_top_go"]', function () {
+            $(document).scrollTop(0)
+        });
+    });
+</script>
+
+<script th:src="@{/js/common2.js}"></script>
+<script th:src="@{/js/oeui.min.js}"></script>
+<script th:src="@{/js/model.popdialog3.js}"></script>
+<script th:src="@{/js/preloadimg.js}"></script>
+<script th:src="@{/js/oelove.ajax.js}"></script>
+<script th:src="@{/js/oeui.dist.min.js}"></script>
+</body>
+</html>

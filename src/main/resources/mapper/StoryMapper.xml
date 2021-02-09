@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xynl.www.dao.StoryMapper">
+  <resultMap id="BaseResultMap" type="com.xynl.www.domain.Story">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="Introduction" jdbcType="VARCHAR" property="introduction" />
+    <result column="titme" jdbcType="VARCHAR" property="titme" />
+    <result column="blessing" jdbcType="INTEGER" property="blessing" />
+    <result column="photo" jdbcType="VARCHAR" property="photo" />
+    <result column="article" jdbcType="VARCHAR" property="article" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, title, Introduction, titme, blessing, photo, article
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_story
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_story
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xynl.www.domain.Story">
+    insert into t_story (id, title, Introduction, 
+      titme, blessing, photo, 
+      article)
+    values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{introduction,jdbcType=VARCHAR}, 
+      #{titme,jdbcType=VARCHAR}, #{blessing,jdbcType=INTEGER}, #{photo,jdbcType=VARCHAR}, 
+      #{article,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xynl.www.domain.Story">
+    insert into t_story
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="introduction != null">
+        Introduction,
+      </if>
+      <if test="titme != null">
+        titme,
+      </if>
+      <if test="blessing != null">
+        blessing,
+      </if>
+      <if test="photo != null">
+        photo,
+      </if>
+      <if test="article != null">
+        article,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="introduction != null">
+        #{introduction,jdbcType=VARCHAR},
+      </if>
+      <if test="titme != null">
+        #{titme,jdbcType=VARCHAR},
+      </if>
+      <if test="blessing != null">
+        #{blessing,jdbcType=INTEGER},
+      </if>
+      <if test="photo != null">
+        #{photo,jdbcType=VARCHAR},
+      </if>
+      <if test="article != null">
+        #{article,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xynl.www.domain.Story">
+    update t_story
+    <set>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="introduction != null">
+        Introduction = #{introduction,jdbcType=VARCHAR},
+      </if>
+      <if test="titme != null">
+        titme = #{titme,jdbcType=VARCHAR},
+      </if>
+      <if test="blessing != null">
+        blessing = #{blessing,jdbcType=INTEGER},
+      </if>
+      <if test="photo != null">
+        photo = #{photo,jdbcType=VARCHAR},
+      </if>
+      <if test="article != null">
+        article = #{article,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xynl.www.domain.Story">
+    update t_story
+    set title = #{title,jdbcType=VARCHAR},
+      Introduction = #{introduction,jdbcType=VARCHAR},
+      titme = #{titme,jdbcType=VARCHAR},
+      blessing = #{blessing,jdbcType=INTEGER},
+      photo = #{photo,jdbcType=VARCHAR},
+      article = #{article,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <resultMap id="www" type="com.xynl.www.domain.Story">
+    <id column="id" property="id"></id>
+    <result column="title" property="title"></result>
+    <result column="introduction" property="introduction"></result>
+    <result column="titme" property="titme"></result>
+    <result column="blessing" property="blessing"></result>
+    <result column="photo" property="photo"></result>
+    <result column="article" property="article"></result>
+    <collection property="blessings" ofType="com.xynl.www.domain.Blessing">
+      <id column="bid" property="id"></id>
+      <result column="time" property="time"></result>
+      <result column="sid" property="sid"></result>
+      <result column="uname" property="uname"></result>
+      <result column="uphoto" property="uphoto"></result>
+      <result column="body" property="body"></result>
+    </collection>
+  </resultMap>
+
+<!--  询所有（用于成功故事主页面）-->
+  <select id="findAll" resultType="com.xynl.www.domain.Story">
+    select * from t_story
+  </select>
+
+<!--  根据id查询（用于显示详细信息）-->
+<select id="findById" parameterType="java.lang.Integer" resultMap="www">
+  select s.id,s.title,s.introduction,s.titme,s.blessing,s.photo,s.article,
+   b.id,b.time,b.sid,b.uname,b.uphoto,b.body from
+   t_story s left join t_blessing b on s.id=b.sid where s.id=#{id}
+</select>
+
+<!--  按照日期排序查询-->
+  <select id="findBytitme" resultType="com.xynl.www.domain.Story">
+    select * from t_story ORDER BY titme DESC
+  </select>
+</mapper>

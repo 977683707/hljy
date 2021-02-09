@@ -1,0 +1,463 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xynl.www.dao.UserMapper">
+  <resultMap id="BaseResultMap" type="com.xynl.www.domain.User">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="sex" jdbcType="VARCHAR" property="sex" />
+    <result column="birthday" jdbcType="VARCHAR" property="birthday" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+    <result column="height" jdbcType="INTEGER" property="height" />
+    <result column="education" jdbcType="VARCHAR" property="education" />
+    <result column="wechat" jdbcType="VARCHAR" property="wechat" />
+    <result column="bloodtype" jdbcType="VARCHAR" property="bloodtype" />
+    <result column="carbuying" jdbcType="VARCHAR" property="carbuying" />
+    <result column="children" jdbcType="VARCHAR" property="children" />
+    <result column="marry" jdbcType="VARCHAR" property="marry" />
+    <result column="hobby" jdbcType="VARCHAR" property="hobby" />
+    <result column="headportrait" jdbcType="VARCHAR" property="headportrait" />
+    <result column="photo" jdbcType="VARCHAR" property="photo" />
+    <result column="briefintroduction" jdbcType="VARCHAR" property="briefintroduction" />
+    <result column="constellation" jdbcType="VARCHAR" property="constellation" />
+    <result column="job" jdbcType="VARCHAR" property="job" />
+    <result column="regtime" jdbcType="VARCHAR" property="regtime" />
+    <result column="logintime" jdbcType="VARCHAR" property="logintime" />
+    <result column="car" jdbcType="VARCHAR" property="car" />
+    <result column="weight" jdbcType="INTEGER" property="weight" />
+    <result column="nation" jdbcType="VARCHAR" property="nation" />
+    <result column="zodiac" jdbcType="VARCHAR" property="zodiac" />
+    <result column="house" jdbcType="VARCHAR" property="house" />
+    <result column="school" jdbcType="VARCHAR" property="school" />
+    <result column="zeage" jdbcType="INTEGER" property="zeage" />
+    <result column="zeheight" jdbcType="INTEGER" property="zeheight" />
+    <result column="zemarry" jdbcType="VARCHAR" property="zemarry" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, phone, name, password, sex, birthday, address, type, height, education, wechat, 
+    bloodtype, carbuying, children, marry, hobby, headportrait, photo, briefintroduction, 
+    constellation, job, regtime, logintime, car, weight, nation, zodiac, house, school, 
+    zeage, zeheight, zemarry
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_user
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_user
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xynl.www.domain.User">
+    insert into t_user (id, phone, name, 
+      password, sex, birthday, 
+      address, type, height, 
+      education, wechat, bloodtype, 
+      carbuying, children, marry, 
+      hobby, headportrait, photo, 
+      briefintroduction, constellation, job, 
+      regtime, logintime, car, 
+      weight, nation, zodiac, 
+      house, school, zeage, 
+      zeheight, zemarry)
+    values (#{id,jdbcType=INTEGER}, #{phone,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{password,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, #{birthday,jdbcType=VARCHAR}, 
+      #{address,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, #{height,jdbcType=INTEGER}, 
+      #{education,jdbcType=VARCHAR}, #{wechat,jdbcType=VARCHAR}, #{bloodtype,jdbcType=VARCHAR}, 
+      #{carbuying,jdbcType=VARCHAR}, #{children,jdbcType=VARCHAR}, #{marry,jdbcType=VARCHAR}, 
+      #{hobby,jdbcType=VARCHAR}, #{headportrait,jdbcType=VARCHAR}, #{photo,jdbcType=VARCHAR}, 
+      #{briefintroduction,jdbcType=VARCHAR}, #{constellation,jdbcType=VARCHAR}, #{job,jdbcType=VARCHAR}, 
+      #{regtime,jdbcType=VARCHAR}, #{logintime,jdbcType=VARCHAR}, #{car,jdbcType=VARCHAR}, 
+      #{weight,jdbcType=INTEGER}, #{nation,jdbcType=VARCHAR}, #{zodiac,jdbcType=VARCHAR}, 
+      #{house,jdbcType=VARCHAR}, #{school,jdbcType=VARCHAR}, #{zeage,jdbcType=INTEGER}, 
+      #{zeheight,jdbcType=INTEGER}, #{zemarry,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xynl.www.domain.User">
+    insert into t_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="sex != null">
+        sex,
+      </if>
+      <if test="birthday != null">
+        birthday,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="height != null">
+        height,
+      </if>
+      <if test="education != null">
+        education,
+      </if>
+      <if test="wechat != null">
+        wechat,
+      </if>
+      <if test="bloodtype != null">
+        bloodtype,
+      </if>
+      <if test="carbuying != null">
+        carbuying,
+      </if>
+      <if test="children != null">
+        children,
+      </if>
+      <if test="marry != null">
+        marry,
+      </if>
+      <if test="hobby != null">
+        hobby,
+      </if>
+      <if test="headportrait != null">
+        headportrait,
+      </if>
+      <if test="photo != null">
+        photo,
+      </if>
+      <if test="briefintroduction != null">
+        briefintroduction,
+      </if>
+      <if test="constellation != null">
+        constellation,
+      </if>
+      <if test="job != null">
+        job,
+      </if>
+      <if test="regtime != null">
+        regtime,
+      </if>
+      <if test="logintime != null">
+        logintime,
+      </if>
+      <if test="car != null">
+        car,
+      </if>
+      <if test="weight != null">
+        weight,
+      </if>
+      <if test="nation != null">
+        nation,
+      </if>
+      <if test="zodiac != null">
+        zodiac,
+      </if>
+      <if test="house != null">
+        house,
+      </if>
+      <if test="school != null">
+        school,
+      </if>
+      <if test="zeage != null">
+        zeage,
+      </if>
+      <if test="zeheight != null">
+        zeheight,
+      </if>
+      <if test="zemarry != null">
+        zemarry,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null">
+        #{birthday,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="height != null">
+        #{height,jdbcType=INTEGER},
+      </if>
+      <if test="education != null">
+        #{education,jdbcType=VARCHAR},
+      </if>
+      <if test="wechat != null">
+        #{wechat,jdbcType=VARCHAR},
+      </if>
+      <if test="bloodtype != null">
+        #{bloodtype,jdbcType=VARCHAR},
+      </if>
+      <if test="carbuying != null">
+        #{carbuying,jdbcType=VARCHAR},
+      </if>
+      <if test="children != null">
+        #{children,jdbcType=VARCHAR},
+      </if>
+      <if test="marry != null">
+        #{marry,jdbcType=VARCHAR},
+      </if>
+      <if test="hobby != null">
+        #{hobby,jdbcType=VARCHAR},
+      </if>
+      <if test="headportrait != null">
+        #{headportrait,jdbcType=VARCHAR},
+      </if>
+      <if test="photo != null">
+        #{photo,jdbcType=VARCHAR},
+      </if>
+      <if test="briefintroduction != null">
+        #{briefintroduction,jdbcType=VARCHAR},
+      </if>
+      <if test="constellation != null">
+        #{constellation,jdbcType=VARCHAR},
+      </if>
+      <if test="job != null">
+        #{job,jdbcType=VARCHAR},
+      </if>
+      <if test="regtime != null">
+        #{regtime,jdbcType=VARCHAR},
+      </if>
+      <if test="logintime != null">
+        #{logintime,jdbcType=VARCHAR},
+      </if>
+      <if test="car != null">
+        #{car,jdbcType=VARCHAR},
+      </if>
+      <if test="weight != null">
+        #{weight,jdbcType=INTEGER},
+      </if>
+      <if test="nation != null">
+        #{nation,jdbcType=VARCHAR},
+      </if>
+      <if test="zodiac != null">
+        #{zodiac,jdbcType=VARCHAR},
+      </if>
+      <if test="house != null">
+        #{house,jdbcType=VARCHAR},
+      </if>
+      <if test="school != null">
+        #{school,jdbcType=VARCHAR},
+      </if>
+      <if test="zeage != null">
+        #{zeage,jdbcType=INTEGER},
+      </if>
+      <if test="zeheight != null">
+        #{zeheight,jdbcType=INTEGER},
+      </if>
+      <if test="zemarry != null">
+        #{zemarry,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xynl.www.domain.User">
+    update t_user
+    <set>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        sex = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null">
+        birthday = #{birthday,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="height != null">
+        height = #{height,jdbcType=INTEGER},
+      </if>
+      <if test="education != null">
+        education = #{education,jdbcType=VARCHAR},
+      </if>
+      <if test="wechat != null">
+        wechat = #{wechat,jdbcType=VARCHAR},
+      </if>
+      <if test="bloodtype != null">
+        bloodtype = #{bloodtype,jdbcType=VARCHAR},
+      </if>
+      <if test="carbuying != null">
+        carbuying = #{carbuying,jdbcType=VARCHAR},
+      </if>
+      <if test="children != null">
+        children = #{children,jdbcType=VARCHAR},
+      </if>
+      <if test="marry != null">
+        marry = #{marry,jdbcType=VARCHAR},
+      </if>
+      <if test="hobby != null">
+        hobby = #{hobby,jdbcType=VARCHAR},
+      </if>
+      <if test="headportrait != null">
+        headportrait = #{headportrait,jdbcType=VARCHAR},
+      </if>
+      <if test="photo != null">
+        photo = #{photo,jdbcType=VARCHAR},
+      </if>
+      <if test="briefintroduction != null">
+        briefintroduction = #{briefintroduction,jdbcType=VARCHAR},
+      </if>
+      <if test="constellation != null">
+        constellation = #{constellation,jdbcType=VARCHAR},
+      </if>
+      <if test="job != null">
+        job = #{job,jdbcType=VARCHAR},
+      </if>
+      <if test="regtime != null">
+        regtime = #{regtime,jdbcType=VARCHAR},
+      </if>
+      <if test="logintime != null">
+        logintime = #{logintime,jdbcType=VARCHAR},
+      </if>
+      <if test="car != null">
+        car = #{car,jdbcType=VARCHAR},
+      </if>
+      <if test="weight != null">
+        weight = #{weight,jdbcType=INTEGER},
+      </if>
+      <if test="nation != null">
+        nation = #{nation,jdbcType=VARCHAR},
+      </if>
+      <if test="zodiac != null">
+        zodiac = #{zodiac,jdbcType=VARCHAR},
+      </if>
+      <if test="house != null">
+        house = #{house,jdbcType=VARCHAR},
+      </if>
+      <if test="school != null">
+        school = #{school,jdbcType=VARCHAR},
+      </if>
+      <if test="zeage != null">
+        zeage = #{zeage,jdbcType=INTEGER},
+      </if>
+      <if test="zeheight != null">
+        zeheight = #{zeheight,jdbcType=INTEGER},
+      </if>
+      <if test="zemarry != null">
+        zemarry = #{zemarry,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xynl.www.domain.User">
+    update t_user
+    set phone = #{phone,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=VARCHAR},
+      birthday = #{birthday,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      height = #{height,jdbcType=INTEGER},
+      education = #{education,jdbcType=VARCHAR},
+      wechat = #{wechat,jdbcType=VARCHAR},
+      bloodtype = #{bloodtype,jdbcType=VARCHAR},
+      carbuying = #{carbuying,jdbcType=VARCHAR},
+      children = #{children,jdbcType=VARCHAR},
+      marry = #{marry,jdbcType=VARCHAR},
+      hobby = #{hobby,jdbcType=VARCHAR},
+      headportrait = #{headportrait,jdbcType=VARCHAR},
+      photo = #{photo,jdbcType=VARCHAR},
+      briefintroduction = #{briefintroduction,jdbcType=VARCHAR},
+      constellation = #{constellation,jdbcType=VARCHAR},
+      job = #{job,jdbcType=VARCHAR},
+      regtime = #{regtime,jdbcType=VARCHAR},
+      logintime = #{logintime,jdbcType=VARCHAR},
+      car = #{car,jdbcType=VARCHAR},
+      weight = #{weight,jdbcType=INTEGER},
+      nation = #{nation,jdbcType=VARCHAR},
+      zodiac = #{zodiac,jdbcType=VARCHAR},
+      house = #{house,jdbcType=VARCHAR},
+      school = #{school,jdbcType=VARCHAR},
+      zeage = #{zeage,jdbcType=INTEGER},
+      zeheight = #{zeheight,jdbcType=INTEGER},
+      zemarry = #{zemarry,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="findByPhoneAndPassword" parameterType="com.xynl.www.domain.User" resultMap="BaseResultMap">
+    select * from t_user where phone=#{phone} and password=#{password}
+  </select>
+  <select id="findByPhone" parameterType="java.lang.String" resultType="com.xynl.www.domain.User">
+    select * from t_user where phone=#{phone}
+  </select>
+
+  <!--  用于交朋识友页面的筛选-->
+  <select id="findByParamter" parameterType="com.xynl.www.domain.Parameter" resultType="com.xynl.www.domain.User">
+    select * from t_user
+    <where>
+      <if test="i1 != null and i1 != ''">
+        TIMESTAMPDIFF(YEAR,birthday,CURDATE()) > #{i1}
+      </if>
+      <if test="i2 != null and i2 != ''">
+        and TIMESTAMPDIFF(YEAR,birthday,CURDATE()) &lt; #{i2}
+      </if>
+      <if test="s1 != null and s1 != ''">
+        and sex like #{s1}
+      </if>
+      <if test="s2 != null and s2 != ''">
+        and marry like #{s2}
+      </if>
+      <if test="s3 != null and s3 != ''">
+        and constellation like #{s3}
+      </if>
+      <if test="i3 !=null and i3 != ''">
+        and height > #{i3}
+      </if>
+      <if test="i4 !=null and i4 != ''">
+        and height &lt; #{i4}
+      </if>
+      <if test="s4 != null and s4 !=''">
+        and job like #{s4}
+      </if>
+      <if test="s5 != null and s5 !=''">
+        and education like #{s5}
+      </if>
+      <if test="s6 != null and s6 != ''">
+        and address like #{s6}
+      </if>
+    </where>
+  </select>
+  <!--  交朋识友页面点击最多用-->
+  <select id="findAll" resultType="com.xynl.www.domain.User">
+    select * from t_user
+  </select>
+
+<!--  主页面优质会员男女-->
+  <select id="findBySex" parameterType="java.lang.String" resultType="com.xynl.www.domain.User">
+    select * from t_user where sex like #{sex}
+  </select>
+</mapper>

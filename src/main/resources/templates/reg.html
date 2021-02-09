@@ -1,0 +1,458 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>会员注册-OElove婚恋系统</title>
+<meta name="description" content="" />
+<meta name="keywords" content="" />
+<meta name="author" content="OEdev" />
+<meta name="generator" content="OElove" />
+<link rel="stylesheet" th:href="@{/css/oeui.css}" />
+<link rel="stylesheet" th:href="@{/css/iconfont.css}" />
+<link rel="stylesheet" th:href="@{/css/iconfont2.css}" />
+<link rel="stylesheet" th:href="@{css/css.css}" />
+<link rel="stylesheet" th:href="@{/css/common.css}" />
+<link rel="stylesheet" th:href="@{/css/public.css}" />
+<script th:src="@{/js/jquery3.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/jquery-3.3.1.js}"></script>
+<style type="text/css">
+.bg_main,.hed_sp span.current,.hed_sp span:hover,.ban_dian span.current,.oe_rank span.current::after,.oeui_btn,.item a.current, .item a:hover,.oeui_checkbox.checked .checkbox{background: #ff4c71!important;}
+.color_main,.oe_menu ul li.current a,.oe_rank span.current,.oe_page a:hover,.pre_type span.current, .pre_type span.current a,.oeui_dist .tab_nav .item.current,.oeui_dist .tab_content .item .box:hover,.oeui_birthday_picker .tab_nav .item.current{color:#ff4c71!important;}
+.bo_b2main {border-bottom: 2px solid #ff4c71!important;}
+.bo_main,.oeui_radio.checked .radio,.oeui_btn,.oeui_btn,.oeui_checkbox.checked .checkbox{border:1px solid #ff4c71!important;}
+.oeui_radio .radio span,.pre_type span.current::after,.oeui_dist .tab_nav .item.current::after,.oeui_dist .tab_content .item .box.current,.oeui_switch.checked .switch,.oeui_birthday_picker .tab_nav .item.current::after{background-color:#ff4c71!important; }
+.oeui_checkbox:hover .checkbox,.oeui_radio:hover .radio{border-color:#ff4c71!important;}
+</style>
+<script type="text/javascript">
+        // 校验手机号
+        function checkPhone() {
+            var phone=$("#phone").val();
+            var reg_phone=/^(13[0-9]|14[01456879]|15[0-3,5-9]|16[2567]|17[0-8]|18[0-9]|19[0-3,5-9])\d{8}$/;
+            var flag = reg_phone.test(phone);
+            if (flag) {
+                $.post("/user/checkPhone", $("#phone").serialize(), function (data) {
+                    if (data.flag) {
+                        $("#phone").css("border", "1px solid red");
+                        $("#phone_s").html("手机号已被注册，请换一个手机号");
+                    } else {
+                        $("#phone").css("border", "1px solid green");
+                        $("#phone_s").html("");
+                    }
+                },"json");
+            } else {
+                $("#phone").css("border","1px solid red");
+            }
+            return flag;
+        }
+        //校验用户名
+        function checkName() {
+            var name = $("#name").val();
+            var checkName=/^[\u4E00-\u9FA5A-Za-z0-9]+$/;
+            var flag = checkName.test(name);
+            if (flag) {
+                $("#name").css("border", "1px solid green");
+                $("#name_s").html("")
+            } else {
+                $("#name").css("border", "1px solid red");
+                $("#name_s").html("用户名格式错误，请输入3-16个字符的用户名")
+            }
+            return flag;
+        }
+        //校验密码
+        function checkPassWord() {
+            var password = $("#password").val();
+            var checkPassWord=/^[a-zA-Z]\w{5,17}$/;
+            var flag = checkPassWord.test(password);
+            if (flag) {
+                $("#password").css("border", "1px solid green");
+                $("#password_s").html("")
+            } else {
+                $("#password").css("border", "1px solid red");
+                $("#password_s").html("密码格式错误，请输入6-16个字符的密码")
+            }
+            return flag;
+        }
+        //校验生日
+        function checkBirthday() {
+            var birthday = $("#birthday").val();
+            var checkBirthday=/^\d{4}-\d{2}-\d{2}/;
+            var flag = checkBirthday.test(birthday);
+            if (flag) {
+                $("#birthday").css("border", "1px solid green");
+                $("#birthday_s").html("");
+            } else {
+                $("#birthday").css("border", "1px solid red");
+                $("#birthday_s").html("日期格式错误，请输入yyyy-mm-dd");
+            }
+            return flag;
+        }
+        //验证地区
+        function checkAddress() {
+            var address = $("#address").val();
+            var checkAddress=/[^省]+省[^市]+市+([^区]+区)|([^县]+县)/;
+            var flag = checkAddress.test(address);
+            if (flag) {
+                $("#address").css("border", "1px solid green");
+                $("#address_s").html("")
+            } else {
+                $("#address").css("border", "1px solid red");
+                $("#address_s").html("地区格式错误，请输入xx省xx市xx县格式的日期")
+            }
+            return flag;
+        }
+        //校验微信号
+        function checkWeChat() {
+            var wechat = $("#wechat").val();
+            var checkWeChat=/^[a-zA-Z\d_]{5,}$/;
+            var flag = checkWeChat.test(wechat);
+            if (flag) {
+                $("#wechat").css("border", "1px solid green");
+                $("#weChat_s").html("")
+            } else {
+                $("#wechat").css("border", "1px solid red");
+                $("#weChat_s").html("微信格式错误，请重新输入")
+            }
+            return flag;
+        }
+
+    $(function () {
+        $("#phone").blur(checkPhone);
+        $("#name").blur(checkName);
+        $("#password").blur(checkPassWord);
+        $("#birthday").blur(checkBirthday);
+        $("#address").blur(checkAddress);
+        $("#wechat").blur(checkWeChat);
+    });
+</script>
+</head>
+<body class="bg_body">
+  <div class="w100per pr bg_main min_w1200">
+  <div class="w1200 h80 pr clearfix bsb">
+    <div class=" pt10" style="max-width:255px;">
+      <a href="https://e.oephp.com/">
+                <img style="max-height: 65px;max-width: 255px;" th:src="@{/img/logo.png}" />
+              </a>
+    </div>
+    <div class="pa rt pt25">
+      <a class="plr20 br30 lh30 bo_f color_f lh30 inline_block" href="/">返回首页</a>
+    </div>
+    <div class="clear"></div>
+  </div>
+</div>
+  <div class="w100per min_w1200 pt20">
+    <div class="w1200 pt20 br10 pr" style="z-index:5; ">
+      <div class="pt60 pb50 pl100 pr bg_f bsb fl br8" style="width:880px;">
+
+                <h1 class="fz24 pl45 pb40 lh30 fb">30秒注册会员，开启你的缘分之旅</h1>
+      <form enctype="multipart/form-data" id="reg_from" method="post" th:action="@{/user/regist}">
+
+<!--          手机号选项-->
+          <dl class="pl110 pr mb15">
+          <dt class="pa lt plr15 w80 ptb9 lh20 t_right">
+            <i class="color_f40 mr3">*</i>手机号
+          </dt>
+          <dd class="fz14">
+            <input type="text" name="phone" id="phone" class="w300 bsb h40 lh40 bn br3 fz15 pl10 bo_eb" maxlength="11" placeholder="请输入手机号码" autocomplete="off" value="">
+            <span id="phone_s"></span>
+          </dd>
+          </dl>
+<!--        验证码选项-->
+
+<!--        用户名选项-->
+        <dl class="pl110 pr mb15">
+          <dt class="pa lt plr15 w80 ptb9 lh20 t_right">
+            <i class="color_f40 mr3">*</i>用户名
+          </dt>
+          <dd class="fz14 pr">
+            <input type="text" name="name" id="name" class="w300 bsb h40 lh40 bn br3 fz15 pl10 bo_eb" maxlength="16" placeholder="请输入3-16个字符的用户名" autocomplete="off" value="">
+              <span id="name_s"></span>
+          </dd>
+        </dl>
+<!--        密码选项-->
+        <dl class="pl110 pr mb15">
+          <dt class="pa lt plr15 w80 ptb9 lh20 t_right">
+            <i class="color_f40 mr3">*</i>密&#12288;码
+          </dt>
+          <dd class="fz14">
+            <input type="password" name="password" id="password" class="w300 bsb h40 lh40 bn br3 fz15 pl10 bo_eb" placeholder="请输入6-16个字符的密码" maxlength="16" autocomplete="off" value="">
+              <span id="password_s"></span>
+          </dd>
+        </dl>
+
+           <div class="pr bo_bf7" style="margin:40px 0; margin-right: 50px;">
+          <span class="bg_f plr10 color_main pa pl40" style=" top: -13px;">完善资料，诚信交友</span>
+        </div>
+<!--          性别选项-->
+        <dl class="pl110 pr mb15">
+          <dt class="pa lt plr15 w80 ptb9 lh20 t_right">
+            <i class="color_f40 mr3">*</i>性&#12288;别
+          </dt>
+          <dd class="fz14 pt5">
+            <div class="ml5 mr10" style="display: inline-block;">
+                <div class="radio">
+                  <input type="radio" name="sex" checked value="男" style="cursor: pointer">
+                </div>
+                <span class="text">男</span>
+            </div>
+            <div class="ml5 mr10" style="display: inline-block;">
+                <div class="radio">
+                  <input type="radio" name="sex" checked value="女" style="cursor: pointer">
+                </div>
+                <span class="text">女</span>
+            </div>
+          </dd>
+        </dl>
+<!--          生日选项-->
+        <dl class="pl110 pr mb15">
+          <dt class="pa lt plr15 w80 ptb9 lh20 t_right">
+            <i class="color_f40 mr3">*</i>生&#12288;日
+          </dt>
+          <dd class="fz14 pr w300">
+            <div class="oeui_birthday_picker z200">
+                <input type="text" name="birthday" id="birthday" class="w300 bsb h40 lh40 bn br3 fz15 pl10 bo_eb" placeholder="请输入yyyy-mm-dd格式的日期" value="">
+                <span id="birthday_s"></span>
+            </div>
+          </dd>
+        </dl>
+<!--     地区选项   -->
+        <dl class="pl110 pr mb15">
+          <dt class="pa lt plr15 w80 ptb9 lh20 t_right">
+            <i class="color_f40 mr3">*</i>地&#12288;区
+          </dt>
+            <dd class="fz14 pr w300">
+                <div class="oeui_birthday_picker z200">
+                    <input type="text" name="address" id="address" class="w300 bsb h40 lh40 bn br3 fz15 pl10 bo_eb" placeholder="请输入xx省xx市xx县格式的日期" value="">
+                    <span id="address_s"></span>
+                </div>
+            </dd>
+        </dl>
+<!--          类型选项-->
+          <dl class="pl110 pr mb15">
+              <dt class="pa lt plr15 w80 ptb9 lh20 t_right">
+                  <i class="color_f40 mr3">*</i>类&#12288;型
+              </dt>
+              <dd class="fz14 pr w300">
+                  <div class="oeui_birthday_picker z200">
+                      <select name="type" id="type" class="w300 bsb h40 lh40 bn br3 fz15 pl10 bo_eb">
+                          <option>交朋友</option>
+                          <option>找知己</option>
+                          <option>谈恋爱</option>
+                          <option>结婚</option>
+                      </select>
+                  </div>
+              </dd>
+          </dl>
+
+<!--身高-->
+          <dl class="pl110 pr mb15">
+              <dt class="pa lt plr15 w80 ptb9 lh20 t_right">
+                  <i class="color_f40 mr3">*</i>身&#12288;高
+              </dt>
+              <dd class="fz14 pr w300">
+                  <div class="oeui_birthday_picker z200">
+                      <select name="height" id="height" class="w300 bsb h40 lh40 bn br3 fz15 pl10 bo_eb">
+                          <option>140</option>
+                          <option>141</option>
+                          <option>142</option>
+                          <option>143</option>
+                          <option>144</option>
+                          <option>145</option>
+                          <option>146</option>
+                          <option>147</option>
+                          <option>148</option>
+                          <option>149</option>
+                          <option>150</option>
+                          <option>151</option>
+                          <option>152</option>
+                          <option>153</option>
+                          <option>154</option>
+                          <option>155</option>
+                          <option>156</option>
+                          <option>157</option>
+                          <option>158</option>
+                          <option>159</option>
+                          <option>160</option>
+                          <option>161</option>
+                          <option>162</option>
+                          <option>163</option>
+                          <option>164</option>
+                          <option>165</option>
+                          <option>166</option>
+                          <option>167</option>
+                          <option>168</option>
+                          <option>169</option>
+                          <option>170</option>
+                          <option>171</option>
+                          <option>172</option>
+                          <option>173</option>
+                          <option>174</option>
+                          <option>175</option>
+                          <option>176</option>
+                          <option>177</option>
+                          <option>178</option>
+                          <option>179</option>
+                          <option>180</option>
+                          <option>181</option>
+                          <option>182</option>
+                          <option>183</option>
+                          <option>184</option>
+                          <option>185</option>
+                          <option>186</option>
+                          <option>187</option>
+                          <option>188</option>
+                          <option>189</option>
+                          <option>190</option>
+                          <option>191</option>
+                          <option>192</option>
+                          <option>193</option>
+                          <option>194</option>
+                          <option>195</option>
+                          <option>196</option>
+                          <option>197</option>
+                          <option>198</option>
+                          <option>199</option>
+                          <option>200</option>
+                          <option>201</option>
+                          <option>202</option>
+                          <option>203</option>
+                          <option>204</option>
+                          <option>205</option>
+                          <option>206</option>
+                          <option>207</option>
+                          <option>208</option>
+                          <option>209</option>
+                          <option>210</option>
+                          <option>211</option>
+                          <option>212</option>
+                          <option>213</option>
+                          <option>214</option>
+                          <option>215</option>
+                          <option>216</option>
+                          <option>217</option>
+                          <option>218</option>
+                          <option>219</option>
+                          <option>220</option>
+                          <option>221</option>
+                          <option>222</option>
+                          <option>223</option>
+                          <option>224</option>
+                          <option>225</option>
+                          <option>226</option>
+                          <option>227</option>
+                          <option>228</option>
+                          <option>229</option>
+                          <option>230</option>
+                          <option>231</option>
+                          <option>232</option>
+                          <option>233</option>
+                          <option>234</option>
+                          <option>235</option>
+                          <option>236</option>
+                          <option>237</option>
+                          <option>238</option>
+                          <option>239</option>
+                          <option>240</option>
+                          <option>241</option>
+                          <option>242</option>
+                          <option>243</option>
+                          <option>244</option>
+                          <option>245</option>
+                          <option>246</option>
+                          <option>247</option>
+                          <option>248</option>
+                          <option>249</option>
+                          <option>250</option>
+                      </select>
+                  </div>
+              </dd>
+          </dl>
+<!--学历-->
+          <dl class="pl110 pr mb15">
+              <dt class="pa lt plr15 w80 ptb9 lh20 t_right">
+                  <i class="color_f40 mr3">*</i>学&#12288;历
+              </dt>
+              <dd class="fz14 pr w300">
+                  <div class="oeui_birthday_picker z200">
+                      <select name="education" id="education" class="w300 bsb h40 lh40 bn br3 fz15 pl10 bo_eb">
+                          <option>高中</option>
+                          <option>中专</option>
+                          <option>大专</option>
+                          <option>本科</option>
+                          <option>硕士</option>
+                          <option>博士</option>
+                          <option>博士后</option>
+                      </select>
+                  </div>
+              </dd>
+          </dl>
+<!--微信-->
+          <dl class="pl110 pr mb15">
+              <dt class="pa lt plr15 w80 ptb9 lh20 t_right">
+                  <i class="color_f40 mr3">*</i>微&#12288;信
+              </dt>
+              <dd class="fz14 pr w300">
+                  <div class="oeui_birthday_picker z200">
+                      <input type="text" name="wechat" id="wechat" class="w300 bsb h40 lh40 bn br3 fz15 pl10 bo_eb" placeholder="请输入微信号">
+                      <span id="weChat_s"></span>
+                  </div>
+              </dd>
+          </dl>
+          <!--头像-->
+          <dl class="pl110 pr mb15">
+              <dt class="pa lt plr15 w80 ptb9 lh20 t_right">
+                  <i class="color_f40 mr3">*</i>头&#12288;相
+              </dt>
+              <dd class="fz14 pr w300">
+                  <div class="oeui_birthday_picker z200">
+                      <div class="w300 bsb h40 lh40 bn br3 fz15 pl10 bo_eb">
+                          <input type="file" name="headportrait_m" id="headportrait" style="height: 40px;color: red;margin-top: 7px;"/>
+                      </div>
+                      <span id="headportrait_s"></span>
+                  </div>
+              </dd>
+          </dl>
+          <!--照片-->
+          <dl class="pl110 pr mb15">
+              <dt class="pa lt plr15 w80 ptb9 lh20 t_right">
+                  <i class="color_f40 mr3">*</i>照&#12288;片
+              </dt>
+              <dd class="fz14 pr w300">
+                  <div class="oeui_birthday_picker z200">
+                      <div class="w300 bsb h40 lh40 bn br3 fz15 pl10 bo_eb">
+                          <input type="file" name="photo_m" id="photo" style="height: 40px;color: red;margin-top: 7px;"/>
+                      </div>
+                      <span id="photo_s"></span>
+                  </div>
+              </dd>
+          </dl>
+        <div class="pt20 pl110">
+          <input type="submit" f="but_submit_reg" id="but_submit_reg"  class="inline_block br2 bg_main color_f lh50 h50 w300 t_center fz16 hover cursor" value="立即注册"></input>
+        </div>
+</form>
+      </div>
+      <div class="w300 bg_f bsb fr plr30 pt40 pb40 br8">
+         
+        <div class="fz16 pb50">
+          <h4 class="pb20">已有帐号？</h4>
+          <p>
+            <a class="lh40 h40 bg_main color_f plr30 br30 inline_block" th:href="@{/user/index}">
+                        直接登录
+                        </a>
+          </p>
+        </div>
+      </div>
+      <div class="clear"></div>
+    </div>
+  </div>
+<script th:src="@{/js/common2.js}"></script>
+<script th:src="@{js/oeui.min.js}"></script>
+<script th:src="@{/js/model.popdialog3.js}"></script>
+<script th:src="@{/js/preloadimg.js}"></script>
+<script th:src="@{/js/oelove.ajax.js}"></script>
+<script th:src="@{/js/oeui.dist.min.js}"></script>
+<script th:src="@{/js/reg.js}"></script>
+<script th:src="@{/js/picker.send2.js}"></script>
+<script th:src="@{/js/oeui.birthday.js}"></script>
+<script th:src="@{/js/oeui.school.min.js}"></script>
+</body>
+</html>

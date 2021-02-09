@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xynl.www.dao.BlessingMapper">
+  <resultMap id="BaseResultMap" type="com.xynl.www.domain.Blessing">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="time" jdbcType="VARCHAR" property="time" />
+    <result column="sid" jdbcType="INTEGER" property="sid" />
+    <result column="uname" jdbcType="VARCHAR" property="uname" />
+    <result column="uphoto" jdbcType="VARCHAR" property="uphoto" />
+    <result column="body" jdbcType="VARCHAR" property="body" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, time, sid, uname, uphoto, body
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_blessing
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_blessing
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xynl.www.domain.Blessing">
+    insert into t_blessing (id, time, sid, 
+      uname, uphoto, body
+      )
+    values (null , #{time,jdbcType=VARCHAR}, #{sid,jdbcType=INTEGER},
+      #{uname,jdbcType=VARCHAR}, #{uphoto,jdbcType=VARCHAR}, #{body,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.xynl.www.domain.Blessing">
+    insert into t_blessing
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="time != null">
+        time,
+      </if>
+      <if test="sid != null">
+        sid,
+      </if>
+      <if test="uname != null">
+        uname,
+      </if>
+      <if test="uphoto != null">
+        uphoto,
+      </if>
+      <if test="body != null">
+        body,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="time != null">
+        #{time,jdbcType=VARCHAR},
+      </if>
+      <if test="sid != null">
+        #{sid,jdbcType=INTEGER},
+      </if>
+      <if test="uname != null">
+        #{uname,jdbcType=VARCHAR},
+      </if>
+      <if test="uphoto != null">
+        #{uphoto,jdbcType=VARCHAR},
+      </if>
+      <if test="body != null">
+        #{body,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xynl.www.domain.Blessing">
+    update t_blessing
+    <set>
+      <if test="time != null">
+        time = #{time,jdbcType=VARCHAR},
+      </if>
+      <if test="sid != null">
+        sid = #{sid,jdbcType=INTEGER},
+      </if>
+      <if test="uname != null">
+        uname = #{uname,jdbcType=VARCHAR},
+      </if>
+      <if test="uphoto != null">
+        uphoto = #{uphoto,jdbcType=VARCHAR},
+      </if>
+      <if test="body != null">
+        body = #{body,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xynl.www.domain.Blessing">
+    update t_blessing
+    set time = #{time,jdbcType=VARCHAR},
+      sid = #{sid,jdbcType=INTEGER},
+      uname = #{uname,jdbcType=VARCHAR},
+      uphoto = #{uphoto,jdbcType=VARCHAR},
+      body = #{body,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

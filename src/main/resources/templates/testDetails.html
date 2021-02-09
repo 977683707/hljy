@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <title>活动列表-OElove婚恋系统</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <link rel="stylesheet" th:href="@{/css/oeui.css}">
+    <link rel="stylesheet" th:href="@{/css/iconfont.css}">
+    <link rel="stylesheet" th:href="@{/css/iconfont2.css}">
+    <link rel="stylesheet" th:href="@{/css/css.css}">
+    <link rel="stylesheet" th:href="@{/css/common.css}">
+    <script th:src="@{/js/jquery3.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/jquery-3.3.1.js}"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("#tcdl").click(function () {
+                $.post("/user/tcdl",{"a":"y"},function (data) {
+                    if (data.flag) {
+                        location.href = "/user/index";
+                    }
+                },"json");
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        var _ROOT_PATH = "/";
+        var _OE_FILE = "/index.php";
+        var _LOGIN_STATUS = "1"; //登录状态
+        var _CONNET_LOGIN = 0;
+        _CONNET_LOGIN = 1;
+        _CONNET_LOGIN = 1;
+
+        var INFOWIN_FLAG = "1";
+        var INFOWIN_LOADTIME = "5";
+        var INFOWIN_CLOSETIME = "10";
+        var INFOWIN_LOOPTIME = "30";
+
+        var CFG_AGE1 = "18";
+        var CFG_AGE2 = "65";
+    </script>
+    <script>
+        if (!window.Promise) {
+            var _hmt = _hmt || [];
+            (function() {
+                var hm = document.createElement("script");
+                hm.src = "/js/promise.polyfill.js";
+                var s = document.getElementsByTagName("script")[0];
+                s.parentNode.insertBefore(hm, s);
+            })();
+        }
+    </script>
+    <script type="text/javascript">
+        $(function () {
+            $("#cs").click(function () {
+                $.post("/test/testDetails2",$("#aaaaa").serialize(),function (data) {
+                    alert("你的测试结果是"+data.errorMsg+"-------"+
+                        data.data);
+                },"json");
+            });
+        })
+    </script>
+    <meta name="author" content="OEdev">
+    <meta name="generator" content="OElove">
+    <style type="text/css">
+        .bg_main,.hed_sp span.current,.hed_sp span:hover,.ban_dian span.current,.oe_rank span.current::after,.oe_page a.current, .oe_page a._current,.oeui_btn,.item a.current, .item a:hover,.oeui_checkbox.checked .checkbox,.maker_dl:hover span,.oe_tag span.current,.ser_top dl dt span.current,.oe_indextag span.current{background: #ff4c71!important;}
+        .color_main,.oe_menu ul li.current a,.oe_rank span.current,.oe_page a:hover,.pre_type span.current, .pre_type span.current a,.oeui_dist .tab_nav .item.current,.oeui_dist .tab_content .item .box:hover,.oeui_birthday_picker .tab_nav .item.current{color:#ff4c71!important;}
+        .bo_b2main {border-bottom: 2px solid #ff4c71!important;}
+        .bo_main,.oeui_radio.checked .radio,.oeui_btn,.oeui_btn,.oeui_checkbox.checked .checkbox{border:1px solid #ff4c71!important;}
+        .oeui_radio .radio span,.pre_type span.current::after,.oeui_dist .tab_nav .item.current::after,.oeui_dist .tab_content .item .box.current,.oeui_switch.checked .switch,.oeui_modal .wrap .btn_group button.confirm,.oeui_birthday_picker .tab_nav .item.current::after,.oe_rank span:hover:after{background-color:#ff4c71!important; }
+        .story_dl:hover,.bo_bmain{border-bottom: 1px solid #ff4c71!important;}
+        .oe_page a.current, .oe_page a._current,.oe_page a:hover,.oeui_checkbox:hover .checkbox,.oeui_radio:hover .radio,.oeui_modal .wrap .btn_group button.confirm,.oe_tag span.current,.ser_top dl dd input,.oe_indextag span.current{border-color:#ff4c71!important;}
+
+        /* 菜单导航 */
+        .oe_menu2 li{float: left;box-sizing:border-box;  color:#fff4e1;}
+        .oe_menu2 li a.mn,.oe_menu2 li div.drops a{color:#fff4e1;}
+        .oe_menu2 li a.mn{display: inline-block; padding:0px 20px; font-size: 16px; position: relative; color:#fff4e1;}
+        .oe_menu2 li a.mn::after{content: ''; display: none;  position: absolute; width: 20px; bottom: 5px; height: 4px; background:#fff4e1; left:50%; margin-left: -10px; border-radius:10px;}
+        .oe_menu2 li.current a.mn::after, .oe_menu2 li a.mn:hover::after{ display: inline-block;}
+
+    </style>
+</head>
+<body class="bg_body">
+
+<script th:src="@{/js/guestbook.js}"></script>
+
+<div class="w100per min_w1200 pr">
+    <div class="w1200 bsb pt40 pr bo_bf7 pb10">
+        <div class="clearfix pre_type fz16 inline_block pt12" style="padding-left: 440px">
+            <h1 style="text-align: center; color: hotpink">欢迎来到情感测试</h1>
+        </div>
+        <div class="clear"></div>
+    </div>
+
+    <div class="w1200 pr mto pt20 clearfix pb40" style="background: #eeeeee">
+        <form id="aaaaa">
+        <dl style="width: 750px;height: 100px;background: #fea8a8; margin-left: 230px;margin-bottom: 20px; " th:each="t:${topics}">
+            <dd style="margin-left: 20px">
+                <h3 class="color_0 fz18 mt10"th:text="${t.name}" >
+                </h3>
+            </dd>
+            <dd style="margin-left: 100px;margin-top: 20px">
+                是<input type="radio" value="1" th:name="i+${t.id}" style="cursor: pointer">
+                否<input type="radio" value="2" th:name="i+${t.id}" style="cursor: pointer">
+            </dd>
+        </dl>
+            <a target="_blank" style="margin-left: 530px;">
+                <span id="cs" class="color_f br3 plr15 bg_main ptb3">点击测试</span>
+            </a>
+        </form>
+    </div>
+
+    <div class="clear"></div>
+
+
+</div>
+<div class="w100per min_1200 pt10" style="background: #333;">
+    <div class="w1200 pt20">
+        <div class="color_9 pb10" style="border-bottom: 1px solid #3f3f3f;">
+            同城交友：
+            <a class="inline_block plr5 ws color_9" th:href="@{/user/filter1(s6='北京')}">北京</a>
+            <a class="inline_block plr5 ws color_9" th:href="@{/user/filter1(s6='广州')}">广州</a>
+            <a class="inline_block plr5 ws color_9" th:href="@{/user/filter1(s6='深圳')}">深圳</a>
+            <a class="inline_block plr5 ws color_9" th:href="@{/user/filter1(s6='上海')}">上海</a>
+            <a class="inline_block plr5 ws color_9" th:href="@{/user/filter1(s6='成都')}">成都</a>
+            <a class="inline_block plr5 ws color_9" th:href="@{/user/filter1(s6='杭州')}">杭州</a>
+            <a class="inline_block plr5 ws color_9" th:href="@{/user/filter1(s6='重庆')}">重庆</a>
+        </div>
+        <div class="t_center pt20 color_c">
+
+
+            <a class="inline_block plr8 color_c" th:href="@{/user/gywm}" rel="nofollow">关于我们</a> <i>|</i>
+
+            <a class="inline_block plr8 color_c">联系我们</a> <i>|</i>
+
+            <a class="inline_block plr8 color_c" >APP小程序</a> <i>|</i>
+            <a class="inline_block plr8 color_c" th:href="@{/user/index}" rel="nofollow">返回首页</a>
+
+        </div>
+        <style>
+            .oe_footers a{color:#ccc;}
+        </style>
+        <div class="t_center pt10 pb20 color_c oe_footers">
+            <p>
+                客服热线：020-82299259<br>
+                联系邮箱：service@phpcoo.com
+            </p>
+            <p>
+                Copyright © 2010-2021　版权所有：OElove
+            </p>
+            <p>
+                软著登字第0561018号 / <a target="_blank">粤ICP备10217863号</a>
+            </p>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div class="w100per min_w1200 ptb5 color_6 fz12 t_center" style="background: #2e2e2e;">
+    </div>
+</div>
+
+<div class="pf ltrb z1000" id="weixinqr_dialog" style="display:none;">
+    <div class="mask w100per h100per bg_tran_5"></div>
+    <div class="popup dialog bg_f br5 pa bsb l50per oh" style="width:500px;top: 50%; margin-top: -230px; margin-left: -250px;">
+        <h3 class="pl20 lh40 bo_bf7">
+            关注微信公众号
+            <span class="pa rt inline_block pr10 bsb cursor" f="but_close_weixinqr">
+        <i class="iconfont icon-guanbi fz20 fn"></i>
+      </span>
+        </h3>
+        <div class="ptb20 fz16 t_center pt40 pb60">
+            <img width="250px" src="/data/attachment/upload/202101/07/a02b16b30f85c8c4.jpg">
+            <p class="pt10">微信扫码关注公众号，获得更多的服务体验</p>
+            <p class="pt10 t_un cursor color_main" f="but_close_weixinqr">
+                先不关注，继续交友
+            </p>
+        </div>
+    </div>
+</div>
+
+<script th:src="@{/js/common2.js}"></script>
+<script th:src="@{/js/oeui.min.js}"></script>
+<script th:src="@{/js/model.popdialog3.js}"></script>
+<script th:src="@{/js/preloadimg.js}"></script>
+<script th:src="@{/js/oelove.ajax.js}"></script>
+<script th:src="@{/js/oeui.dist.min.js}"></script>
+<script th:src="@{/js/party.js}"></script>
+
+</body>
+</html>

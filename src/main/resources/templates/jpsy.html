@@ -1,0 +1,1140 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <title>会员-列表-OElove婚恋系统</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <link rel="stylesheet" th:href="@{/css/oeui.css}">
+    <link rel="stylesheet" th:href="@{/css/iconfont.css}">
+    <link rel="stylesheet" th:href="@{/css/iconfont2.css}">
+    <link rel="stylesheet" th:href="@{/css/css.css}">
+    <link rel="stylesheet" th:href="@{/css/common.css}">
+    <script th:src="@{/js/jquery3.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/jquery-3.3.1.js}"></script>
+    <script type="text/javascript">
+        var _ROOT_PATH = "/";
+        var _OE_FILE = "/index.php";
+        var _LOGIN_STATUS = "1"; //登录状态
+        var _CONNET_LOGIN = 0;
+        _CONNET_LOGIN = 1;
+        _CONNET_LOGIN = 1;
+
+        var INFOWIN_FLAG = "1";
+        var INFOWIN_LOADTIME = "5";
+        var INFOWIN_CLOSETIME = "10";
+        var INFOWIN_LOOPTIME = "30";
+
+        var CFG_AGE1 = "18";
+        var CFG_AGE2 = "65";
+    </script>
+    <script type="text/javascript">
+        $(function () {
+            $("#tcdl").click(function () {
+                $.post("/user/tcdl",{"a":"y"},function (data) {
+                    if (data.flag) {
+                        location.href = "/user/index";
+                    }
+                },"json");
+            });
+        });
+    </script>
+    <script>
+        if (!window.Promise) {
+            var _hmt = _hmt || [];
+            (function() {
+                var hm = document.createElement("script");
+                hm.src = "/js/promise.polyfill.js";
+                var s = document.getElementsByTagName("script")[0];
+                s.parentNode.insertBefore(hm, s);
+            })();
+        }
+    </script>
+    <meta name="author" content="OEdev">
+    <meta name="generator" content="OElove">
+    <style type="text/css">
+        .bg_main,.hed_sp span.current,.hed_sp span:hover,.ban_dian span.current,.oe_rank span.current::after,.oe_page a.current, .oe_page a._current,.oeui_btn,.item a.current, .item a:hover,.oeui_checkbox.checked .checkbox,.maker_dl:hover span,.oe_tag span.current,.ser_top dl dt span.current,.oe_indextag span.current{background: #ff4c71!important;}
+        .color_main,.oe_menu ul li.current a,.oe_rank span.current,.oe_page a:hover,.pre_type span.current, .pre_type span.current a,.oeui_dist .tab_nav .item.current,.oeui_dist .tab_content .item .box:hover,.oeui_birthday_picker .tab_nav .item.current{color:#ff4c71!important;}
+        .bo_b2main {border-bottom: 2px solid #ff4c71!important;}
+        .bo_main,.oeui_radio.checked .radio,.oeui_btn,.oeui_btn,.oeui_checkbox.checked .checkbox{border:1px solid #ff4c71!important;}
+        .oeui_radio .radio span,.pre_type span.current::after,.oeui_dist .tab_nav .item.current::after,.oeui_dist .tab_content .item .box.current,.oeui_switch.checked .switch,.oeui_modal .wrap .btn_group button.confirm,.oeui_birthday_picker .tab_nav .item.current::after,.oe_rank span:hover:after{background-color:#ff4c71!important; }
+        .story_dl:hover,.bo_bmain{border-bottom: 1px solid #ff4c71!important;}
+        .oe_page a.current, .oe_page a._current,.oe_page a:hover,.oeui_checkbox:hover .checkbox,.oeui_radio:hover .radio,.oeui_modal .wrap .btn_group button.confirm,.oe_tag span.current,.ser_top dl dd input,.oe_indextag span.current{border-color:#ff4c71!important;}
+
+        /* 菜单导航 */
+        .oe_menu2 li{float: left;box-sizing:border-box;  color:#fff4e1;}
+        .oe_menu2 li a.mn,.oe_menu2 li div.drops a{color:#fff4e1;}
+        .oe_menu2 li a.mn{display: inline-block; padding:0px 20px; font-size: 16px; position: relative; color:#fff4e1;}
+        .oe_menu2 li a.mn::after{content: ''; display: none;  position: absolute; width: 20px; bottom: 5px; height: 4px; background:#fff4e1; left:50%; margin-left: -10px; border-radius:10px;}
+        .oe_menu2 li.current a.mn::after, .oe_menu2 li a.mn:hover::after{ display: inline-block;}
+
+    </style>
+</head>
+<body class="bg_body">
+<div class="w100per min_1200 bg_main pr z300 h65">
+    <div class="w1200">
+        <div class="fl">
+            <a>
+                <img class="vam" style="max-height:65px;" alt="OElove婚恋系统" title="交友系统_交友源码_交友程序_婚恋相亲系统OElove婚恋系统" th:src="@{/img/9dea1a3525e3502f.png}" />
+            </a>
+        </div>
+        <div class="h65" style="margin-left: 200px;">
+            <ul class="oe_menu2 lh65">
+                <li><a class="mn" th:href="@{/user/index}">首页<i></i></a></li>
+                <li class="current"><a class="mn" th:href="@{/user/jpsy}">交朋识友<i></i></a></li>
+                <li><a class="mn" th:href="@{/activity/activity1}">热门活动<i></i></a></li>
+                <li><a class="mn" th:href="@{/post/post}">情感驿站<i></i></a></li>
+                <li><a class="mn" th:href="@{/story/story}">成功故事<i></i></a></li>
+                <li><a class="mn" th:href="@{/test/testpaper1}">心里测试</a></li>
+                <li><a class="mn" th:href="@{/partner/partner}">合作伙伴<i></i></a></li>
+                <li><a class="mn" th:href="@{/user/gywm}">关于我们</a></li>
+                <li class="pl15">
+                    <dl class="pr inline_block vam h50 lh40" f="but_hs_menus">
+                        <dt class="lh40">
+                            <p class="inline_block">
+                                <span class="img_24 br oh vam mr5"><a><img class="ob_c"  th:src="@{/{headportrait}(headportrait=${session.user.headportrait})}"></a></span><span class="span_username"><a class=" inline_block vam color_f ws" style="max-width: 70px;" th:text="${session.user.name}" >www</a></span> <i class="iconfont icon-down fz12 color_f"></i>
+                            </p>
+                        </dt>
+                        <dd class="pa  r0 bo_eb p30 bg_f oh bsb br5" style="width: 200px; top: 50px; display: none;">
+                            <div class="inline_block fz14 t_center bo_right pr30 fl w120">
+                                <div>
+                                    <a class="plr15 ws ptb5 bo_eb lh20 mb10 block" >完善资料</a>
+                                    <a class="plr15 ws ptb5 bo_eb lh20 bg_e  block" id="tcdl" rel="nofollow">退出登录</a>
+                                </div>
+                            </div>
+                        </dd>
+                    </dl>
+                </li>
+                <div class="clear"></div>
+            </ul>
+        </div>
+        <div class="clear"></div>
+    </div>
+
+    <div class="clear"></div>
+</div>
+
+<script>
+    $(function(){
+        $('[f="but_hs_menus"]').hover(
+            function(){
+                $(this).closest('li').find('dd').stop().slideDown(100);
+            },
+            function(){
+                $(this).closest('li').find('dd').stop().slideUp(100);
+            }
+        );
+        $('[f="but_hs_kuji"]').hover(
+            function(){
+                $(this).find('div').stop().slideDown(100);
+            },
+            function(){
+                $(this).find('div').stop().slideUp(100);
+            }
+        );
+    });
+</script>
+<script th:src="@{/js/guestbook.js}"></script>
+
+<div class="w1200 bg_f mt15">
+    <div class="pr bo_bf7 h50 plr10">
+    <span class="h100per lh50 fz16 fb">
+        <img class="h20 vam mr5 pr t_1" th:src="@{/img/ser.svg}">搜索靠前</span>
+    </div>
+
+    <!--//ajax_rankuser.tpl -->
+    <div style="height:180px;" class="p15 pr bsb oh clearfix pt15 pb20">
+        <div class="oh" id="info">
+            <div style="width: 4630px;" id="rank_user_box">
+                <div class="userls inline_block oh h100per" th:each="user:${userAll}">
+
+                    <dl class="p10 fl br3 mr10 oh h100per bsb  w100">
+                        <dt class="img_80 br oh pr">
+                            <a target="_blank" th:href="@{/user/userDetails1(id=${user.id})}">
+                                <img class="ob_c" th:src="@{/{photo}(photo=${user.photo})}" preload="0">
+                            </a>
+                        </dt>
+                        <dd>
+                            <h3 class="t_center color_3 pt3 ws">
+                                <a target="_blank" th:text="${user.name}"></a>
+                            </h3>
+                            <p class="t_center lh22 fz12 color_9" th:text="${user.marry}+' | '+${user.height}">
+                            </p>
+                        </dd>
+                    </dl>
+                    <div class="clear"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--条件筛选-->
+<div class="w1200 bg_f mt15 bsb p15 plr30 pt25">
+
+    <form id="filter_form" action="/user/filter1" method="get">
+        <div class="ptb10 pr pl80">
+            <span class="pa lt t10 color_9">条件筛选：</span>
+<!--筛选年龄-->
+            <label class="mr5">年龄</label>
+            <div class="w90 inline_block">
+                <div class="oeui_select">
+                    <div class="selector">
+<!--     年龄最小值-->
+                        <input type="hidden" id="i1" name="i1">
+                        <span class="selection">不限</span>
+                        <span class="icon">
+            <em class="iconfont icon-down fz12 color_9"></em>
+          </span>
+                    </div>
+                    <div class="dropdown h250 oy" style="display: none; top: 0px;">
+                        <div class="option">不限</div>
+                        <div class="option" data-val="18">
+                            18岁
+                        </div>
+                        <div class="option" data-val="19">
+                            19岁
+                        </div>
+                        <div class="option" data-val="20">
+                            20岁
+                        </div>
+                        <div class="option" data-val="21">
+                            21岁
+                        </div>
+                        <div class="option" data-val="22">
+                            22岁
+                        </div>
+                        <div class="option" data-val="23">
+                            23岁
+                        </div>
+                        <div class="option" data-val="24">
+                            24岁
+                        </div>
+                        <div class="option" data-val="25">
+                            25岁
+                        </div>
+                        <div class="option" data-val="26">
+                            26岁
+                        </div>
+                        <div class="option" data-val="27">
+                            27岁
+                        </div>
+                        <div class="option" data-val="28">
+                            28岁
+                        </div>
+                        <div class="option" data-val="29">
+                            29岁
+                        </div>
+                        <div class="option" data-val="30">
+                            30岁
+                        </div>
+                        <div class="option" data-val="31">
+                            31岁
+                        </div>
+                        <div class="option" data-val="32">
+                            32岁
+                        </div>
+                        <div class="option" data-val="33">
+                            33岁
+                        </div>
+                        <div class="option" data-val="34">
+                            34岁
+                        </div>
+                        <div class="option" data-val="35">
+                            35岁
+                        </div>
+                        <div class="option" data-val="36">
+                            36岁
+                        </div>
+                        <div class="option" data-val="37">
+                            37岁
+                        </div>
+                        <div class="option" data-val="38">
+                            38岁
+                        </div>
+                        <div class="option" data-val="39">
+                            39岁
+                        </div>
+                        <div class="option" data-val="40">
+                            40岁
+                        </div>
+                        <div class="option" data-val="41">
+                            41岁
+                        </div>
+                        <div class="option" data-val="42">
+                            42岁
+                        </div>
+                        <div class="option" data-val="43">
+                            43岁
+                        </div>
+                        <div class="option" data-val="44">
+                            44岁
+                        </div>
+                        <div class="option" data-val="45">
+                            45岁
+                        </div>
+                        <div class="option" data-val="46">
+                            46岁
+                        </div>
+                        <div class="option" data-val="47">
+                            47岁
+                        </div>
+                        <div class="option" data-val="48">
+                            48岁
+                        </div>
+                        <div class="option" data-val="49">
+                            49岁
+                        </div>
+                        <div class="option" data-val="50">
+                            50岁
+                        </div>
+                        <div class="option" data-val="51">
+                            51岁
+                        </div>
+                        <div class="option" data-val="52">
+                            52岁
+                        </div>
+                        <div class="option" data-val="53">
+                            53岁
+                        </div>
+                        <div class="option" data-val="54">
+                            54岁
+                        </div>
+                        <div class="option" data-val="55">
+                            55岁
+                        </div>
+                        <div class="option" data-val="56">
+                            56岁
+                        </div>
+                        <div class="option" data-val="57">
+                            57岁
+                        </div>
+                        <div class="option" data-val="58">
+                            58岁
+                        </div>
+                        <div class="option" data-val="59">
+                            59岁
+                        </div>
+                        <div class="option" data-val="60">
+                            60岁
+                        </div>
+                        <div class="option" data-val="61">
+                            61岁
+                        </div>
+                        <div class="option" data-val="62">
+                            62岁
+                        </div>
+                        <div class="option" data-val="63">
+                            63岁
+                        </div>
+                        <div class="option" data-val="64">
+                            64岁
+                        </div>
+                        <div class="option" data-val="65">
+                            65岁
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <i>-</i>
+            <div class="w90 inline_block">
+                <div class="oeui_select">
+                    <div class="selector">
+<!--        年龄最大值-->
+                        <input type="hidden" id="i2" name="i2">
+                        <span class="selection current">
+            27岁
+          </span>
+                        <span class="icon">
+            <em class="iconfont icon-down fz12 color_9"></em>
+          </span>
+                    </div>
+                    <div class="dropdown h250 oy">
+                        <div class="option">不限</div>
+                        <div class="option" data-val="18">
+                            18岁
+                        </div>
+                        <div class="option" data-val="19">
+                            19岁
+                        </div>
+                        <div class="option" data-val="20">
+                            20岁
+                        </div>
+                        <div class="option" data-val="21">
+                            21岁
+                        </div>
+                        <div class="option" data-val="22">
+                            22岁
+                        </div>
+                        <div class="option" data-val="23">
+                            23岁
+                        </div>
+                        <div class="option" data-val="24">
+                            24岁
+                        </div>
+                        <div class="option" data-val="25">
+                            25岁
+                        </div>
+                        <div class="option" data-val="26">
+                            26岁
+                        </div>
+                        <div class="option selected" data-val="27">
+                            27岁
+                        </div>
+                        <div class="option" data-val="28">
+                            28岁
+                        </div>
+                        <div class="option" data-val="29">
+                            29岁
+                        </div>
+                        <div class="option" data-val="30">
+                            30岁
+                        </div>
+                        <div class="option" data-val="31">
+                            31岁
+                        </div>
+                        <div class="option" data-val="32">
+                            32岁
+                        </div>
+                        <div class="option" data-val="33">
+                            33岁
+                        </div>
+                        <div class="option" data-val="34">
+                            34岁
+                        </div>
+                        <div class="option" data-val="35">
+                            35岁
+                        </div>
+                        <div class="option" data-val="36">
+                            36岁
+                        </div>
+                        <div class="option" data-val="37">
+                            37岁
+                        </div>
+                        <div class="option" data-val="38">
+                            38岁
+                        </div>
+                        <div class="option" data-val="39">
+                            39岁
+                        </div>
+                        <div class="option" data-val="40">
+                            40岁
+                        </div>
+                        <div class="option" data-val="41">
+                            41岁
+                        </div>
+                        <div class="option" data-val="42">
+                            42岁
+                        </div>
+                        <div class="option" data-val="43">
+                            43岁
+                        </div>
+                        <div class="option" data-val="44">
+                            44岁
+                        </div>
+                        <div class="option" data-val="45">
+                            45岁
+                        </div>
+                        <div class="option" data-val="46">
+                            46岁
+                        </div>
+                        <div class="option" data-val="47">
+                            47岁
+                        </div>
+                        <div class="option" data-val="48">
+                            48岁
+                        </div>
+                        <div class="option" data-val="49">
+                            49岁
+                        </div>
+                        <div class="option" data-val="50">
+                            50岁
+                        </div>
+                        <div class="option" data-val="51">
+                            51岁
+                        </div>
+                        <div class="option" data-val="52">
+                            52岁
+                        </div>
+                        <div class="option" data-val="53">
+                            53岁
+                        </div>
+                        <div class="option" data-val="54">
+                            54岁
+                        </div>
+                        <div class="option" data-val="55">
+                            55岁
+                        </div>
+                        <div class="option" data-val="56">
+                            56岁
+                        </div>
+                        <div class="option" data-val="57">
+                            57岁
+                        </div>
+                        <div class="option" data-val="58">
+                            58岁
+                        </div>
+                        <div class="option" data-val="59">
+                            59岁
+                        </div>
+                        <div class="option" data-val="60">
+                            60岁
+                        </div>
+                        <div class="option" data-val="61">
+                            61岁
+                        </div>
+                        <div class="option" data-val="62">
+                            62岁
+                        </div>
+                        <div class="option" data-val="63">
+                            63岁
+                        </div>
+                        <div class="option" data-val="64">
+                            64岁
+                        </div>
+                        <div class="option" data-val="65">
+                            65岁
+                        </div>
+                    </div>
+                </div>
+            </div>
+<!--筛选性别-->
+            <div class="w90 inline_block ml5">
+                <div class="oeui_select">
+                    <div class="selector">
+                        <input type="hidden" id="s1" name="s1">
+                        <span class="selection current">女</span>
+                        <span class="icon">
+            <em class="iconfont icon-down fz12 color_9"></em>
+          </span>
+                    </div>
+                    <div class="dropdown">
+                        <div class="option">不限</div>
+                        <div class="option" data-val="男">男</div>
+                        <div class="option selected" data-val="女">女</div>
+                    </div>
+                </div>
+            </div>
+            <div class=" inline_block ml5">
+                <div style="width:auto;" class="oeui_dist" id="dist">
+                    <input type="hidden" id="s_dist1" name="s_dist1" value="0">
+
+                </div>
+            </div>
+<!--筛选婚况-->
+            <div class="w90 inline_block ml5">
+                <div class="oeui_select">
+                    <div class="selector">
+                        <input type="hidden" id="s2" name="s2">
+                        <span class="selection">婚况</span>
+                        <span class="icon">
+            <em class="iconfont icon-down fz12 color_9"></em>
+          </span>
+                    </div>
+                    <div class="dropdown">
+                        <div class="option">不限</div>
+                        <div class="option" data-val="未婚">未婚</div>
+                        <div class="option" data-val="离异">离异</div>
+                        <div class="option" data-val="丧偶">丧偶</div>
+                    </div>
+                </div>
+            </div>
+<!--筛选星座-->
+            <div class="w90 inline_block ml5">
+                <div class="oeui_select">
+                    <div class="selector">
+                        <input type="hidden" id="s3" name="s3">
+                        <span class="selection">星座</span>
+                        <span class="icon">
+            <em class="iconfont icon-down fz12 color_9"></em>
+          </span>
+                    </div>
+                    <div class="dropdown h250 oy" style="display: none; top: 0px;">
+                        <div class="option">不限</div>
+                        <div class="option" data-val="白羊座">白羊座</div>
+                        <div class="option" data-val="金牛座">金牛座</div>
+                        <div class="option" data-val="双子座">双子座</div>
+                        <div class="option" data-val="巨蟹座">巨蟹座</div>
+                        <div class="option" data-val="狮子座">狮子座</div>
+                        <div class="option" data-val="处女座">处女座</div>
+                        <div class="option" data-val="天秤座">天秤座</div>
+                        <div class="option" data-val="天蝎座">天蝎座</div>
+                        <div class="option" data-val="射手座">射手座</div>
+                        <div class="option" data-val="摩羯座">摩羯座</div>
+                        <div class="option" data-val="水瓶座">水瓶座</div>
+                        <div class="option" data-val="双鱼座">双鱼座</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+<!--筛选身高-->
+        <div class="ptb10 pr pl80">
+            <label class="mr5">身高</label>
+            <div class="w90 inline_block ">
+                <div class="oeui_select">
+                    <div class="selector">
+<!--        筛选身高最小值-->
+                        <input type="hidden" id="i3" name="i3">
+                        <span class="selection">不限</span>
+                        <span class="icon">
+            <em class="iconfont icon-down fz12 color_9"></em>
+          </span>
+                    </div>
+                    <div class="dropdown h250 oy">
+                        <div class="option">不限</div>
+                        <div class="option" data-val="140">140CM</div>
+                        <div class="option" data-val="141">141CM</div>
+                        <div class="option" data-val="142">142CM</div>
+                        <div class="option" data-val="143">143CM</div>
+                        <div class="option" data-val="144">144CM</div>
+                        <div class="option" data-val="145">145CM</div>
+                        <div class="option" data-val="146">146CM</div>
+                        <div class="option" data-val="147">147CM</div>
+                        <div class="option" data-val="148">148CM</div>
+                        <div class="option" data-val="149">149CM</div>
+                        <div class="option" data-val="150">150CM</div>
+                        <div class="option" data-val="151">151CM</div>
+                        <div class="option" data-val="152">152CM</div>
+                        <div class="option" data-val="153">153CM</div>
+                        <div class="option" data-val="154">154CM</div>
+                        <div class="option" data-val="155">155CM</div>
+                        <div class="option" data-val="156">156CM</div>
+                        <div class="option" data-val="157">157CM</div>
+                        <div class="option" data-val="158">158CM</div>
+                        <div class="option" data-val="159">159CM</div>
+                        <div class="option" data-val="160">160CM</div>
+                        <div class="option" data-val="161">161CM</div>
+                        <div class="option" data-val="162">162CM</div>
+                        <div class="option" data-val="163">163CM</div>
+                        <div class="option" data-val="164">164CM</div>
+                        <div class="option" data-val="165">165CM</div>
+                        <div class="option" data-val="166">166CM</div>
+                        <div class="option" data-val="167">167CM</div>
+                        <div class="option" data-val="168">168CM</div>
+                        <div class="option" data-val="169">169CM</div>
+                        <div class="option" data-val="170">170CM</div>
+                        <div class="option" data-val="171">171CM</div>
+                        <div class="option" data-val="172">172CM</div>
+                        <div class="option" data-val="173">173CM</div>
+                        <div class="option" data-val="174">174CM</div>
+                        <div class="option" data-val="175">175CM</div>
+                        <div class="option" data-val="176">176CM</div>
+                        <div class="option" data-val="177">177CM</div>
+                        <div class="option" data-val="178">178CM</div>
+                        <div class="option" data-val="179">179CM</div>
+                        <div class="option" data-val="180">180CM</div>
+                        <div class="option" data-val="181">181CM</div>
+                        <div class="option" data-val="182">182CM</div>
+                        <div class="option" data-val="183">183CM</div>
+                        <div class="option" data-val="184">184CM</div>
+                        <div class="option" data-val="185">185CM</div>
+                        <div class="option" data-val="186">186CM</div>
+                        <div class="option" data-val="187">187CM</div>
+                        <div class="option" data-val="188">188CM</div>
+                        <div class="option" data-val="189">189CM</div>
+                        <div class="option" data-val="190">190CM</div>
+                        <div class="option" data-val="191">191CM</div>
+                        <div class="option" data-val="192">192CM</div>
+                        <div class="option" data-val="193">193CM</div>
+                        <div class="option" data-val="194">194CM</div>
+                        <div class="option" data-val="195">195CM</div>
+                        <div class="option" data-val="196">196CM</div>
+                        <div class="option" data-val="197">197CM</div>
+                        <div class="option" data-val="198">198CM</div>
+                        <div class="option" data-val="199">199CM</div>
+                        <div class="option" data-val="200">200CM</div>
+                        <div class="option" data-val="201">201CM</div>
+                        <div class="option" data-val="202">202CM</div>
+                        <div class="option" data-val="203">203CM</div>
+                        <div class="option" data-val="204">204CM</div>
+                        <div class="option" data-val="205">205CM</div>
+                        <div class="option" data-val="206">206CM</div>
+                        <div class="option" data-val="207">207CM</div>
+                        <div class="option" data-val="208">208CM</div>
+                        <div class="option" data-val="209">209CM</div>
+                        <div class="option" data-val="210">210CM</div>
+                        <div class="option" data-val="211">211CM</div>
+                        <div class="option" data-val="212">212CM</div>
+                        <div class="option" data-val="213">213CM</div>
+                        <div class="option" data-val="214">214CM</div>
+                        <div class="option" data-val="215">215CM</div>
+                        <div class="option" data-val="216">216CM</div>
+                        <div class="option" data-val="217">217CM</div>
+                        <div class="option" data-val="218">218CM</div>
+                        <div class="option" data-val="219">219CM</div>
+                        <div class="option" data-val="220">220CM</div>
+                        <div class="option" data-val="221">221CM</div>
+                        <div class="option" data-val="222">222CM</div>
+                        <div class="option" data-val="223">223CM</div>
+                        <div class="option" data-val="224">224CM</div>
+                        <div class="option" data-val="225">225CM</div>
+                        <div class="option" data-val="226">226CM</div>
+                        <div class="option" data-val="227">227CM</div>
+                        <div class="option" data-val="228">228CM</div>
+                        <div class="option" data-val="229">229CM</div>
+                        <div class="option" data-val="230">230CM</div>
+                        <div class="option" data-val="231">231CM</div>
+                        <div class="option" data-val="232">232CM</div>
+                        <div class="option" data-val="233">233CM</div>
+                        <div class="option" data-val="234">234CM</div>
+                        <div class="option" data-val="235">235CM</div>
+                        <div class="option" data-val="236">236CM</div>
+                        <div class="option" data-val="237">237CM</div>
+                        <div class="option" data-val="238">238CM</div>
+                        <div class="option" data-val="239">239CM</div>
+                        <div class="option" data-val="240">240CM</div>
+                        <div class="option" data-val="241">241CM</div>
+                        <div class="option" data-val="242">242CM</div>
+                        <div class="option" data-val="243">243CM</div>
+                        <div class="option" data-val="244">244CM</div>
+                        <div class="option" data-val="245">245CM</div>
+                        <div class="option" data-val="246">246CM</div>
+                        <div class="option" data-val="247">247CM</div>
+                        <div class="option" data-val="248">248CM</div>
+                        <div class="option" data-val="249">249CM</div>
+                        <div class="option" data-val="250">250CM</div>
+                        <div class="option" data-val="251">251CM</div>
+                        <div class="option" data-val="252">252CM</div>
+                        <div class="option" data-val="253">253CM</div>
+                        <div class="option" data-val="254">254CM</div>
+                        <div class="option" data-val="255">255CM</div>
+                        <div class="option" data-val="256">256CM</div>
+                        <div class="option" data-val="257">257CM</div>
+                        <div class="option" data-val="258">258CM</div>
+                        <div class="option" data-val="259">259CM</div>
+                        <div class="option" data-val="260">260CM</div>
+                    </div>
+                </div>
+            </div>
+            -
+            <div class="w90 inline_block ">
+                <div class="oeui_select">
+                    <div class="selector">
+<!--         筛选最大值-->
+                        <input type="hidden" id="i4" name="i4">
+                        <span class="selection">不限</span>
+                        <span class="icon">
+            <em class="iconfont icon-down fz12 color_9"></em>
+          </span>
+                    </div>
+                    <div class="dropdown h250 oy">
+                        <div class="option">不限</div>
+                        <div class="option" data-val="140">140CM</div>
+                        <div class="option" data-val="141">141CM</div>
+                        <div class="option" data-val="142">142CM</div>
+                        <div class="option" data-val="143">143CM</div>
+                        <div class="option" data-val="144">144CM</div>
+                        <div class="option" data-val="145">145CM</div>
+                        <div class="option" data-val="146">146CM</div>
+                        <div class="option" data-val="147">147CM</div>
+                        <div class="option" data-val="148">148CM</div>
+                        <div class="option" data-val="149">149CM</div>
+                        <div class="option" data-val="150">150CM</div>
+                        <div class="option" data-val="151">151CM</div>
+                        <div class="option" data-val="152">152CM</div>
+                        <div class="option" data-val="153">153CM</div>
+                        <div class="option" data-val="154">154CM</div>
+                        <div class="option" data-val="155">155CM</div>
+                        <div class="option" data-val="156">156CM</div>
+                        <div class="option" data-val="157">157CM</div>
+                        <div class="option" data-val="158">158CM</div>
+                        <div class="option" data-val="159">159CM</div>
+                        <div class="option" data-val="160">160CM</div>
+                        <div class="option" data-val="161">161CM</div>
+                        <div class="option" data-val="162">162CM</div>
+                        <div class="option" data-val="163">163CM</div>
+                        <div class="option" data-val="164">164CM</div>
+                        <div class="option" data-val="165">165CM</div>
+                        <div class="option" data-val="166">166CM</div>
+                        <div class="option" data-val="167">167CM</div>
+                        <div class="option" data-val="168">168CM</div>
+                        <div class="option" data-val="169">169CM</div>
+                        <div class="option" data-val="170">170CM</div>
+                        <div class="option" data-val="171">171CM</div>
+                        <div class="option" data-val="172">172CM</div>
+                        <div class="option" data-val="173">173CM</div>
+                        <div class="option" data-val="174">174CM</div>
+                        <div class="option" data-val="175">175CM</div>
+                        <div class="option" data-val="176">176CM</div>
+                        <div class="option" data-val="177">177CM</div>
+                        <div class="option" data-val="178">178CM</div>
+                        <div class="option" data-val="179">179CM</div>
+                        <div class="option" data-val="180">180CM</div>
+                        <div class="option" data-val="181">181CM</div>
+                        <div class="option" data-val="182">182CM</div>
+                        <div class="option" data-val="183">183CM</div>
+                        <div class="option" data-val="184">184CM</div>
+                        <div class="option" data-val="185">185CM</div>
+                        <div class="option" data-val="186">186CM</div>
+                        <div class="option" data-val="187">187CM</div>
+                        <div class="option" data-val="188">188CM</div>
+                        <div class="option" data-val="189">189CM</div>
+                        <div class="option" data-val="190">190CM</div>
+                        <div class="option" data-val="191">191CM</div>
+                        <div class="option" data-val="192">192CM</div>
+                        <div class="option" data-val="193">193CM</div>
+                        <div class="option" data-val="194">194CM</div>
+                        <div class="option" data-val="195">195CM</div>
+                        <div class="option" data-val="196">196CM</div>
+                        <div class="option" data-val="197">197CM</div>
+                        <div class="option" data-val="198">198CM</div>
+                        <div class="option" data-val="199">199CM</div>
+                        <div class="option" data-val="200">200CM</div>
+                        <div class="option" data-val="201">201CM</div>
+                        <div class="option" data-val="202">202CM</div>
+                        <div class="option" data-val="203">203CM</div>
+                        <div class="option" data-val="204">204CM</div>
+                        <div class="option" data-val="205">205CM</div>
+                        <div class="option" data-val="206">206CM</div>
+                        <div class="option" data-val="207">207CM</div>
+                        <div class="option" data-val="208">208CM</div>
+                        <div class="option" data-val="209">209CM</div>
+                        <div class="option" data-val="210">210CM</div>
+                        <div class="option" data-val="211">211CM</div>
+                        <div class="option" data-val="212">212CM</div>
+                        <div class="option" data-val="213">213CM</div>
+                        <div class="option" data-val="214">214CM</div>
+                        <div class="option" data-val="215">215CM</div>
+                        <div class="option" data-val="216">216CM</div>
+                        <div class="option" data-val="217">217CM</div>
+                        <div class="option" data-val="218">218CM</div>
+                        <div class="option" data-val="219">219CM</div>
+                        <div class="option" data-val="220">220CM</div>
+                        <div class="option" data-val="221">221CM</div>
+                        <div class="option" data-val="222">222CM</div>
+                        <div class="option" data-val="223">223CM</div>
+                        <div class="option" data-val="224">224CM</div>
+                        <div class="option" data-val="225">225CM</div>
+                        <div class="option" data-val="226">226CM</div>
+                        <div class="option" data-val="227">227CM</div>
+                        <div class="option" data-val="228">228CM</div>
+                        <div class="option" data-val="229">229CM</div>
+                        <div class="option" data-val="230">230CM</div>
+                        <div class="option" data-val="231">231CM</div>
+                        <div class="option" data-val="232">232CM</div>
+                        <div class="option" data-val="233">233CM</div>
+                        <div class="option" data-val="234">234CM</div>
+                        <div class="option" data-val="235">235CM</div>
+                        <div class="option" data-val="236">236CM</div>
+                        <div class="option" data-val="237">237CM</div>
+                        <div class="option" data-val="238">238CM</div>
+                        <div class="option" data-val="239">239CM</div>
+                        <div class="option" data-val="240">240CM</div>
+                        <div class="option" data-val="241">241CM</div>
+                        <div class="option" data-val="242">242CM</div>
+                        <div class="option" data-val="243">243CM</div>
+                        <div class="option" data-val="244">244CM</div>
+                        <div class="option" data-val="245">245CM</div>
+                        <div class="option" data-val="246">246CM</div>
+                        <div class="option" data-val="247">247CM</div>
+                        <div class="option" data-val="248">248CM</div>
+                        <div class="option" data-val="249">249CM</div>
+                        <div class="option" data-val="250">250CM</div>
+                        <div class="option" data-val="251">251CM</div>
+                        <div class="option" data-val="252">252CM</div>
+                        <div class="option" data-val="253">253CM</div>
+                        <div class="option" data-val="254">254CM</div>
+                        <div class="option" data-val="255">255CM</div>
+                        <div class="option" data-val="256">256CM</div>
+                        <div class="option" data-val="257">257CM</div>
+                        <div class="option" data-val="258">258CM</div>
+                        <div class="option" data-val="259">259CM</div>
+                        <div class="option" data-val="260">260CM</div>
+                    </div>
+                </div>
+            </div>
+<!--筛选职业-->
+            <div class="w90 inline_block ml5">
+                <div class="oeui_select">
+                    <div class="selector">
+                        <input type="hidden" id="s4" name="s4">
+                        <span class="selection">职业</span>
+                        <span class="icon">
+            <em class="iconfont icon-down fz12 color_9"></em>
+          </span>
+                    </div>
+                    <div class="dropdown h250 oy">
+                        <div class="option">不限</div>
+                        <div class="option" data-val="销售">销售</div>
+                        <div class="option" data-val="IT工程师">IT工程师</div>
+                        <div class="option" data-val="教授">教授</div>
+                        <div class="option" data-val="在校学生">在校学生</div>
+                        <div class="option" data-val="产品经理">产品经理</div>
+                        <div class="option" data-val="总经理">总经理</div>
+                        <div class="option" data-val="副总/总监">副总/总监</div>
+                        <div class="option" data-val="部门经理">部门经理</div>
+                        <div class="option" data-val="中层管理">中层管理</div>
+                        <div class="option" data-val="企业家">企业家</div>
+                        <div class="option" data-val="个体老板">个体老板</div>
+                        <div class="option" data-val="高级干部">高级干部</div>
+                        <div class="option" data-val="公务员">公务员</div>
+                        <div class="option" data-val="律师">律师</div>
+                        <div class="option" data-val="医生">医生</div>
+                        <div class="option" data-val="护士">护士</div>
+                        <div class="option" data-val="专家学者">专家学者</div>
+                        <div class="option" data-val="工程师">工程师</div>
+                        <div class="option" data-val="设计师">设计师</div>
+                        <div class="option" data-val="艺术家">艺术家</div>
+                        <div class="option" data-val="演员">演员</div>
+                        <div class="option" data-val="模特">模特</div>
+                        <div class="option" data-val="离/退休">离/退休</div>
+                        <div class="option" data-val="技术员">技术员</div>
+                        <div class="option" data-val="服务员">服务员</div>
+                        <div class="option" data-val="普通员工">普通员工</div>
+                        <div class="option" data-val="自由职业">自由职业</div>
+                        <div class="option" data-val="无业">无业</div>
+                    </div>
+                </div>
+            </div>
+<!--筛选学历-->
+            <div class="inline_block ml5" style="width: 106px;">
+                <div class="oeui_select">
+                    <div class="selector">
+                        <input type="hidden" id="s5" name="s5">
+                        <span class="selection">学历</span>
+                        <span class="icon">
+            <em class="iconfont icon-down fz12 color_9"></em>
+          </span>
+                    </div>
+                    <div class="dropdown h250 oy">
+                        <div class="option">不限</div>
+                        <div class="option" data-val="高中">高中</div>
+                        <div class="option" data-val="中专">中专</div>
+                        <div class="option" data-val="大专">大专</div>
+                        <div class="option" data-val="本科">本科</div>
+                        <div class="option" data-val="硕士">硕士</div>
+                        <div class="option" data-val="博士">博士</div>
+                        <div class="option" data-val="博士后">博士后</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+<!--    筛选居住地-->
+        <div class="ptb10 pr pl80">
+            <label class="mr5">居住地</label>
+            <div class="w90 inline_block ">
+                <div class="oeui_select">
+                        <input  class="selector" style="height: 25px;width: 200px;"type="text" id="s6" name="s6" placeholder="请输入xx省xx市xx县格式的日期">
+                </div>
+            </div>
+            <div class="pa r10 b10 pb20">
+                <button type="submit" class="bg_main fz16 w120 br3 lh40 hover t_center color_f cursor">筛选</button>
+            </div>
+        </div>
+    </form>
+
+    <p class="fz14 pt10 pb10">
+        <span class="color_9 lh24 mb5">热门城市：</span>
+        <a class="mr5 bo_d9 inline_block lh24 plr10 br" th:href="@{/user/filter1(s6='北京')}" >
+            北京
+        </a>
+        <a class="mr5 bo_d9 inline_block lh24 plr10 br" th:href="@{/user/filter1(s6='广州')}">
+            广州
+        </a>
+        <a class="mr5 bo_d9 inline_block lh24 plr10 br" th:href="@{/user/filter1(s6='深圳')}">
+            深圳
+        </a>
+        <a class="mr5 bo_d9 inline_block lh24 plr10 br" th:href="@{/user/filter1(s6='上海')}">
+            上海
+        </a>
+        <a class="mr5 bo_d9 inline_block lh24 plr10 br" th:href="@{/user/filter1(s6='成都')}">
+            成都
+        </a>
+        <a class="mr5 bo_d9 inline_block lh24 plr10 br" th:href="@{/user/filter1(s6='杭州')}">
+            杭州
+        </a>
+        <a class="mr5 bo_d9 inline_block lh24 plr10 br" th:href="@{/user/filter1(s6='重庆')}">
+            重庆
+        </a>
+    </p>
+</div>
+<script>
+    $(function(){
+        var more_dialog = null;
+        $(document).on("click", '[f="but_more_search"]', function(){
+            more_dialog = OEUI.modal.dialog({
+                el:'#moresearch_dialog',
+                type: 'custom'
+            });
+        });
+        $(document).on("click", '[f="but_close_moresearch"]', function(){
+            if (more_dialog) {
+                more_dialog.remove();
+            }
+        });
+        $('#avatar').on('change',function(){
+            var val = $(this).find('[name="s_avatar"]').val();
+            if(val == '0'){
+                $(this).find('[name="s_avatar"]').val('2');
+            }
+        });
+    });
+</script>
+
+
+
+<div class="w1200 oh bsb bo_tf7">
+    <div class="pt10" style="width:1225px;">
+        <dl th:each="user,userStat:${users}" class="ulist_dl fl bsb oh br5 p10 mb20 pr bg_f" style="width:220px;height:360px;margin-right:25px;">
+            <dt class="pr oh" style="height:245px;">
+
+                <a target="_blank" th:href="@{/user/userDetails1(id=${user.id})}">
+                    <img class="ob_c" th:src="@{/{photo}(photo=${user.photo})}" data-src="/data/attachment/avatar/202008/08/87e906cc3276d9f7_350.jpg" preload="1">
+                </a>
+                <p class="icon t_center pa ptb4 lbr bg_tran_5 color_f" style="bottom:-32px;">
+                    <label class="cursor" f="pop_jdchat" data-touid="202667" data-loginstatus="1">
+                        <i class="iconfont icon-sixin vat fz18"></i>
+                        点击深入了解
+                    </label>
+                </p>
+
+                <div class="pa lt">
+
+                </div>
+            </dt>
+            <dd class="bg_f">
+                <h3 class="t_center fz17 color_3 lh35 pt3">
+                    <a  target="_blank"th:text="${user.name}">qqwww730</a>
+                    <label title="手机已认证"><img class="w17" th:src="@{/img/r_mobile.svg}"></label>
+                </h3>
+                <p class="color_6 t_center ws">
+                    <em  th:text="${user.sex}+' |'"></em>
+                    <em  th:text="${user.marry}+' |'"></em>
+                    <em  th:text="${user.height}"></em>
+                </p>
+                <p class="color_9 ws" th:text="${user.hobby}" style="text-align: center">
+                </p>
+            </dd>
+        </dl>
+        <div class="clear"></div>
+    </div>
+    <div class="oe_page">
+        <a th:text="|共${Total}条|"></a>
+        <a th:text="|共${Pages}页|"></a>
+        <a th:text="|当前第${PageNum}页|"></a>
+        <a th:href="@{/user/filter2(pageNum=1)}">首页</a>
+        <a th:href="@{/user/filter2(pageNum=${PageNum1})}">上一页</a>
+        <a th:href="@{/user/filter2(pageNum=${PageNum2})}">下一页</a>
+    </div>
+</div>
+
+<input type="hidden" name="rank_url" id="rank_url" value="/index.php?c=ajax&amp;a=rankuser&amp;s_gender=2&amp;s_age1=12&amp;s_age2=27&amp;s_dist1=0&amp;s_dist2=0">
+
+<div class="w100per min_1200 pt10" style="background: #333;">
+    <div class="w1200 pt20">
+        <div class="color_9 pb10" style="border-bottom: 1px solid #3f3f3f;">
+            同城交友：
+            <a class="inline_block plr5 ws color_9" th:href="@{/user/filter1(s6='北京')}">北京</a>
+            <a class="inline_block plr5 ws color_9" th:href="@{/user/filter1(s6='广州')}">广州</a>
+            <a class="inline_block plr5 ws color_9" th:href="@{/user/filter1(s6='深圳')}">深圳</a>
+            <a class="inline_block plr5 ws color_9" th:href="@{/user/filter1(s6='上海')}">上海</a>
+            <a class="inline_block plr5 ws color_9" th:href="@{/user/filter1(s6='成都')}">成都</a>
+            <a class="inline_block plr5 ws color_9" th:href="@{/user/filter1(s6='杭州')}">杭州</a>
+            <a class="inline_block plr5 ws color_9" th:href="@{/user/filter1(s6='重庆')}">重庆</a>
+        </div>
+        <div class="t_center pt20 color_c">
+
+
+            <a class="inline_block plr8 color_c" th:href="@{/user/gywm}" rel="nofollow">关于我们</a> <i>|</i>
+
+            <a class="inline_block plr8 color_c">联系我们</a> <i>|</i>
+
+            <a class="inline_block plr8 color_c" >APP小程序</a> <i>|</i>
+            <a class="inline_block plr8 color_c" th:href="@{/user/index}" rel="nofollow">返回首页</a>
+
+        </div>
+        <style>
+            .oe_footers a{color:#ccc;}
+        </style>
+        <div class="t_center pt10 pb20 color_c oe_footers">
+            <p>
+                客服热线：020-82299259<br>
+                联系邮箱：service@phpcoo.com
+            </p>
+            <p>
+                Copyright © 2010-2021　版权所有：OElove
+            </p>
+            <p>
+                软著登字第0561018号 / <a target="_blank">粤ICP备10217863号</a>
+            </p>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div class="w100per min_w1200 ptb5 color_6 fz12 t_center" style="background: #2e2e2e;">
+    </div>
+</div>
+<!--//侧边栏 二维码 -->
+<div class="pf z100 l50per z300" style="margin-left:610px; bottom:250px;">
+    <div class="pr mb5">
+        <a f="but_right_show" class="bg_tran br2 img_50 cursor inline_block t_center" href="javascipt:;">
+            <i class="iconfont icon-weixin1 color_f lh50 fz36 ptb2"></i>
+        </a>
+        <div class="nro" style="display:none;">
+            <img class="pa" style="left:-20px;top:22px;" th:src="@{/img/wei.png}">
+            <dl class="pa bg_f bo_eb t_center ptb10" style="width:220px;left:-241px;top:-140px;">
+                <dt><img th:src="@{/img/a02b16b30f85c8c4.jpg}" width="200px"></dt>
+                <dd class="pt5">
+                    <p class="fz18"><img class="vam mb5 mr5" th:src="@{/img/wei_ico.jpg}">微信</p>
+                    <span class="fz16 color_6">扫描二维码关注微信公众号</span>
+                </dd>
+            </dl>
+        </div>
+    </div>
+    <div class="pr mb5">
+        <a f="but_right_show" class="bg_tran br2 img_50 cursor inline_block t_center" href="javascipt:;">
+            <i class="iconfont icon-shouji color_f lh50 fz30"></i>
+        </a>
+        <div class="nro" style="display:none;">
+            <img class="pa" style="left:-20px;top:22px;" th:src="@{/img/wei.png}">
+            <dl class="pa bg_f bo_eb t_center ptb10" style="width:220px;left:-241px;top:-140px;">
+                <dt><img th:src="@{/img/6b98e2e6344abdba.png}" width="200px"></dt>
+                <dd class="pt5">
+                    <p class="fz18"><img class="vam mb5 mr5" th:src="@{/img/w_mobile.png}"> 手机端</p>
+                    <span class="fz16 color_6">扫描二维码关注最新动态</span> </dd>
+            </dl>
+        </div>
+    </div>
+</div>
+<div f="but_top_go" class="pf z300 l50per" style="margin-left:610px; bottom:195px;display: none;">
+    <div class="pr mb5">
+        <a class="bg_tran br2 img_50 cursor inline_block t_center" href="javascipt:;">
+            <i class="iconfont icon-dingwei color_f lh50 fz30"></i>
+        </a>
+    </div>
+</div>
+<script>
+    $(function () {
+        $('[f="but_right_show"]').hover(
+            function () {
+                $(this).removeClass('bg_tran').addClass('bg_main').siblings('.nro').show();
+            },
+            function () {
+                $(this).removeClass('bg_main').addClass('bg_tran').siblings('.nro').hide();
+            }
+        );
+        if ($(window).scrollTop() > 300) {
+            $("[f='but_top_go']").css('display', 'block');
+        }
+        $(window).scroll(function () {
+            if ($(window).scrollTop() > 300) {
+                $("[f='but_top_go']").css('display', 'block');
+            }
+            else {
+                $("[f='but_top_go']").css('display', 'none');
+            }
+        });
+        $(document).on('click', '[f="but_top_go"]', function () {
+            $(document).scrollTop(0)
+        });
+    });
+</script>
+
+<script th:src="@{/js/common2.js}"></script>
+<script th:src="@{/js/oeui.min.js}"></script>
+<script th:src="@{/js/model.popdialog3.js}"></script>
+<script th:src="@{/js/preloadimg.js}"></script>
+<script th:src="@{/js/oelove.ajax.js}"></script>
+<script th:src="@{/js/oeui.dist.min.js}"></script>
+<script th:src="@{/js/user.js}"></script>
+<script th:src="@{/js/store.js}"></script>
+</body>
+</html>

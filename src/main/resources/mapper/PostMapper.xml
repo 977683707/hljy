@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xynl.www.dao.PostMapper">
+  <resultMap id="BaseResultMap" type="com.xynl.www.domain.Post">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="time" jdbcType="VARCHAR" property="time" />
+    <result column="age" jdbcType="INTEGER" property="age" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="userntroduction" jdbcType="VARCHAR" property="userntroduction" />
+    <result column="ntroduction" jdbcType="VARCHAR" property="ntroduction" />
+    <result column="post" jdbcType="VARCHAR" property="post" />
+    <result column="uname" jdbcType="VARCHAR" property="uname" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, title, time, age, address, userntroduction, ntroduction, post, uname
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_post
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_post
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xynl.www.domain.Post">
+    insert into t_post (id, title, time, 
+      age, address, userntroduction, 
+      ntroduction, post, uname
+      )
+    values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{time,jdbcType=VARCHAR}, 
+      #{age,jdbcType=INTEGER}, #{address,jdbcType=VARCHAR}, #{userntroduction,jdbcType=VARCHAR}, 
+      #{ntroduction,jdbcType=VARCHAR}, #{post,jdbcType=VARCHAR}, #{uname,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.xynl.www.domain.Post">
+    insert into t_post
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="time != null">
+        time,
+      </if>
+      <if test="age != null">
+        age,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="userntroduction != null">
+        userntroduction,
+      </if>
+      <if test="ntroduction != null">
+        ntroduction,
+      </if>
+      <if test="post != null">
+        post,
+      </if>
+      <if test="uname != null">
+        uname,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null">
+        #{time,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null">
+        #{age,jdbcType=INTEGER},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="userntroduction != null">
+        #{userntroduction,jdbcType=VARCHAR},
+      </if>
+      <if test="ntroduction != null">
+        #{ntroduction,jdbcType=VARCHAR},
+      </if>
+      <if test="post != null">
+        #{post,jdbcType=VARCHAR},
+      </if>
+      <if test="uname != null">
+        #{uname,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xynl.www.domain.Post">
+    update t_post
+    <set>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null">
+        time = #{time,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null">
+        age = #{age,jdbcType=INTEGER},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="userntroduction != null">
+        userntroduction = #{userntroduction,jdbcType=VARCHAR},
+      </if>
+      <if test="ntroduction != null">
+        ntroduction = #{ntroduction,jdbcType=VARCHAR},
+      </if>
+      <if test="post != null">
+        post = #{post,jdbcType=VARCHAR},
+      </if>
+      <if test="uname != null">
+        uname = #{uname,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xynl.www.domain.Post">
+    update t_post
+    set title = #{title,jdbcType=VARCHAR},
+      time = #{time,jdbcType=VARCHAR},
+      age = #{age,jdbcType=INTEGER},
+      address = #{address,jdbcType=VARCHAR},
+      userntroduction = #{userntroduction,jdbcType=VARCHAR},
+      ntroduction = #{ntroduction,jdbcType=VARCHAR},
+      post = #{post,jdbcType=VARCHAR},
+      uname = #{uname,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="findAll" resultType="com.xynl.www.domain.Post">
+    select * from t_post
+  </select>
+</mapper>

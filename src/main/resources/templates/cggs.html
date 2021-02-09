@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <title>成功案例列表-OElove婚恋系统</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <link rel="stylesheet" th:href="@{/css/oeui.css}">
+    <link rel="stylesheet" th:href="@{/css/css.css}" />
+    <link rel="stylesheet" th:href="@{/css/common.css}" />
+    <link rel="stylesheet" th:href="@{/css/iconfont.css}" />
+    <script type="text/javascript" th:src="@{/js/jquery3.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/jquery-3.3.1.js}"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("#tcdl").click(function () {
+                $.post("/user/tcdl",{"a":"y"},function (data) {
+                    if (data.flag) {
+                        location.href = "/user/index";
+                    }
+                },"json");
+            });
+        });
+    </script>
+    <meta name="author" content="OEdev">
+    <meta name="generator" content="OElove">
+    <style type="text/css">
+        .bg_main,.hed_sp span.current,.hed_sp span:hover,.ban_dian span.current,.oe_rank span.current::after,.oe_page a.current, .oe_page a._current,.oeui_btn,.item a.current, .item a:hover,.oeui_checkbox.checked .checkbox,.maker_dl:hover span,.oe_tag span.current,.ser_top dl dt span.current,.oe_indextag span.current{background: #ff4c71!important;}
+        .color_main,.oe_menu ul li.current a,.oe_rank span.current,.oe_page a:hover,.pre_type span.current, .pre_type span.current a,.oeui_dist .tab_nav .item.current,.oeui_dist .tab_content .item .box:hover,.oeui_birthday_picker .tab_nav .item.current{color:#ff4c71!important;}
+        .bo_b2main {border-bottom: 2px solid #ff4c71!important;}
+        .bo_main,.oeui_radio.checked .radio,.oeui_btn,.oeui_btn,.oeui_checkbox.checked .checkbox{border:1px solid #ff4c71!important;}
+        .oeui_radio .radio span,.pre_type span.current::after,.oeui_dist .tab_nav .item.current::after,.oeui_dist .tab_content .item .box.current,.oeui_switch.checked .switch,.oeui_modal .wrap .btn_group button.confirm,.oeui_birthday_picker .tab_nav .item.current::after,.oe_rank span:hover:after{background-color:#ff4c71!important; }
+        .story_dl:hover,.bo_bmain{border-bottom: 1px solid #ff4c71!important;}
+        .oe_page a.current, .oe_page a._current,.oe_page a:hover,.oeui_checkbox:hover .checkbox,.oeui_radio:hover .radio,.oeui_modal .wrap .btn_group button.confirm,.oe_tag span.current,.ser_top dl dd input,.oe_indextag span.current{border-color:#ff4c71!important;}
+
+        /* 菜单导航 */
+        .oe_menu2 li{float: left;box-sizing:border-box;  color:#fff4e1;}
+        .oe_menu2 li a.mn,.oe_menu2 li div.drops a{color:#fff4e1;}
+        .oe_menu2 li a.mn{display: inline-block; padding:0px 20px; font-size: 16px; position: relative; color:#fff4e1;}
+        .oe_menu2 li a.mn::after{content: ''; display: none;  position: absolute; width: 20px; bottom: 5px; height: 4px; background:#fff4e1; left:50%; margin-left: -10px; border-radius:10px;}
+        .oe_menu2 li.current a.mn::after, .oe_menu2 li a.mn:hover::after{ display: inline-block;}
+
+    </style>
+</head>
+<body><div class="w100per min_1200 bg_main pr z300 h65">
+    <div class="w1200">
+        <div class="fl">
+            <a>
+                <img class="vam" style="max-height:65px;" alt="OElove婚恋系统" title="交友系统_交友源码_交友程序_婚恋相亲系统OElove婚恋系统" th:src="@{/img/9dea1a3525e3502f.png}" />
+            </a>
+        </div>
+        <div class="h65" style="margin-left: 200px;">
+            <ul class="oe_menu2 lh65">
+                <li ><a class="mn" th:href="@{/user/index}">首页<i></i></a></li>
+                <li><a class="mn" th:href="@{/user/jpsy}">交朋识友<i></i></a></li>
+                <li><a class="mn" th:href="@{/activity/activity1}">热门活动<i></i></a></li>
+                <li><a class="mn" th:href="@{/post/post}">情感驿站<i></i></a></li>
+                <li class="current" ><a class="mn" th:href="@{/story/story}">成功故事<i></i></a></li>
+                <li><a class="mn" th:href="@{/test/testpaper1}">心里测试</a></li>
+                <li><a class="mn" th:href="@{/partner/partner}">合作伙伴<i></i></a></li>
+                <li><a class="mn" th:href="@{/user/gywm}">关于我们</a></li>
+                <li class="pl15">
+                    <dl class="pr inline_block vam h50 lh40" f="but_hs_menus">
+                        <dt class="lh40">
+                            <p class="inline_block">
+                                <span class="img_24 br oh vam mr5"><a><img class="ob_c"  th:src="@{/{headportrait}(headportrait=${session.user.headportrait})}"></a></span><span class="span_username"><a class=" inline_block vam color_f ws" style="max-width: 70px;" th:text="${session.user.name}" >www</a></span> <i class="iconfont icon-down fz12 color_f"></i>
+                            </p>
+                        </dt>
+                        <dd class="pa  r0 bo_eb p30 bg_f oh bsb br5" style="width: 200px; top: 50px; display: none;">
+                            <div class="inline_block fz14 t_center bo_right pr30 fl w120">
+                                <div>
+                                    <a class="plr15 ws ptb5 bo_eb lh20 mb10 block" >完善资料</a>
+                                    <a class="plr15 ws ptb5 bo_eb lh20 bg_e  block" id="tcdl" rel="nofollow">退出登录</a>
+                                </div>
+                            </div>
+                        </dd>
+                    </dl>
+                </li>
+                <div class="clear"></div>
+            </ul>
+        </div>
+        <div class="clear"></div>
+    </div>
+
+    <div class="clear"></div>
+</div>
+<script>
+    $(function(){
+        $('[f="but_hs_menus"]').hover(
+            function(){
+                $(this).closest('li').find('dd').stop().slideDown(100);
+            },
+            function(){
+                $(this).closest('li').find('dd').stop().slideUp(100);
+            }
+        );
+        $('[f="but_hs_kuji"]').hover(
+            function(){
+                $(this).find('div').stop().slideDown(100);
+            },
+            function(){
+                $(this).find('div').stop().slideUp(100);
+            }
+        );
+    });
+</script>
+<script th:src="@{/js/guestbook.js}"></script>
+
+<div class="w100per min_w1200">
+    <div class="w1200 pr pt20 pb20">
+        <div class="pr clearfix pt15">
+            <div style="width:1250px;">
+                <dl class="fl bsb pr h200 mb30 mr30" style="padding-left:320px;width:580px;" th:each="s:${storys}">
+                    <dt class="pa lt w300 h200 bsb br8 oh">
+                        <a th:href="@{/story/storyDetails1(id=${s.id})}">
+                            <img class="ob_c" th:src="@{/{photo}(photo=${s.photo})}" data-src="/data/attachment/story/201704/08/e5c3ab471281ae04.jpg" preload="1">
+                        </a>
+                    </dt>
+                    <dd class="pr h100per">
+                        <h3 class="lh30">
+                            <a class="fb fz16 color_3" target="_blank" th:href="@{/story/storyDetails1(id=${s.id})}" th:text="${s.title}"></a>
+                        </h3>
+                        <p class="color_6 lh20 pt8" th:text="${s.introduction}">
+                            我们的恋爱历程我姓贾没错，可在OElove婚恋交友网我玩的是真感情，而今贾情真爱...
+                        </p>
+                        <p class="pa b10 color_9 fz14">
+                            <span class="mr10" th:text="${s.titme}">时间：2017/04/08</span>
+                            <span class="mr10">收到祝福:</span>
+                            <a th:text="${s.blessing}"></a>
+                        </p>
+                    </dd>
+                </dl>
+                <div class="oe_page" style="padding-top: 40px;">
+                    <a th:text="|共${total}条|"></a>
+                    <a th:text="|共${pages}页|"></a>
+                    <a th:text="|当前第${pageNum}页|"></a>
+                    <a th:href="@{/story/story(pageNum=1)}">首页</a>
+                    <a th:href="@{/story/story(pageNum=${pageNum2})}">上一页</a>
+                    <a th:href="@{/story/story(pageNum=${pageNum1})}">下一页</a>
+                </div>
+                <div class="oe_page" style="margin-top:10px;"></div>
+            </div>
+        </div>
+
+        <div class="clear"></div>
+    </div>
+</div>
+<div class="w100per min_1200 pt10" style="background: #333;">
+    <div class="w1200 pt20">
+        <div class="color_9 pb10" style="border-bottom: 1px solid #3f3f3f;">
+            同城交友：
+            <a class="inline_block plr5 ws color_9" th:href="@{/user/filter1(s6='北京')}">北京</a>
+            <a class="inline_block plr5 ws color_9" th:href="@{/user/filter1(s6='广州')}">广州</a>
+            <a class="inline_block plr5 ws color_9" th:href="@{/user/filter1(s6='深圳')}">深圳</a>
+            <a class="inline_block plr5 ws color_9" th:href="@{/user/filter1(s6='上海')}">上海</a>
+            <a class="inline_block plr5 ws color_9" th:href="@{/user/filter1(s6='成都')}">成都</a>
+            <a class="inline_block plr5 ws color_9" th:href="@{/user/filter1(s6='杭州')}">杭州</a>
+            <a class="inline_block plr5 ws color_9" th:href="@{/user/filter1(s6='重庆')}">重庆</a>
+        </div>
+        <div class="t_center pt20 color_c">
+
+
+            <a class="inline_block plr8 color_c" th:href="@{/user/gywm}" rel="nofollow">关于我们</a> <i>|</i>
+
+            <a class="inline_block plr8 color_c">联系我们</a> <i>|</i>
+
+            <a class="inline_block plr8 color_c" >APP小程序</a> <i>|</i>
+            <a class="inline_block plr8 color_c" th:href="@{/user/index}" rel="nofollow">返回首页</a>
+
+        </div>
+        <style>
+            .oe_footers a{color:#ccc;}
+        </style>
+        <div class="t_center pt10 pb20 color_c oe_footers">
+            <p>
+                客服热线：020-82299259<br>
+                联系邮箱：service@phpcoo.com
+            </p>
+            <p>
+                Copyright © 2010-2021　版权所有：OElove
+            </p>
+            <p>
+                软著登字第0561018号 / <a target="_blank">粤ICP备10217863号</a>
+            </p>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div class="w100per min_w1200 ptb5 color_6 fz12 t_center" style="background: #2e2e2e;">
+    </div>
+</div>
+
+
+<script th:src="@{js/common2.js}"></script>
+<script th:src="@{/js/oeui.min.js}"></script>
+<script th:src="@{/js/model.popdialog3.js}"></script>
+<script th:src="@{/js/preloadimg.js}"></script>
+<script th:src="@{/js/oelove.ajax.js}"></script>
+<script th:src="@{/js/oeui.dist.min.js}"></script>
+<script th:src="@{/js/oeui.datetime.min.js}"></script>
+<script>
+    $(function() {
+        preload_img();
+    });
+</script>
+
+<div class="xl-chrome-ext-bar" id="xl_chrome_ext_{4DB361DE-01F7-4376-B494-639E489D19ED}" style="display: none;">
+    <div class="xl-chrome-ext-bar__logo"></div>
+
+    <a id="xl_chrome_ext_download" href="javascript:;" class="xl-chrome-ext-bar__option">下载视频</a>
+    <a id="xl_chrome_ext_close" href="javascript:;" class="xl-chrome-ext-bar__close"></a>
+</div></body>
+</html>

@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xynl.www.dao.ActivityMapper">
+  <resultMap id="BaseResultMap" type="com.xynl.www.domain.Activity">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="theme" jdbcType="VARCHAR" property="theme" />
+    <result column="organizer1" jdbcType="VARCHAR" property="organizer1" />
+    <result column="organizer2" jdbcType="VARCHAR" property="organizer2" />
+    <result column="activitynumber" jdbcType="INTEGER" property="activitynumber" />
+    <result column="activitytime" jdbcType="VARCHAR" property="activitytime" />
+    <result column="signupcutofftime" jdbcType="VARCHAR" property="signupcutofftime" />
+    <result column="browse" jdbcType="INTEGER" property="browse" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="female" jdbcType="INTEGER" property="female" />
+    <result column="male" jdbcType="INTEGER" property="male" />
+    <result column="description1" jdbcType="VARCHAR" property="description1" />
+    <result column="description2" jdbcType="VARCHAR" property="description2" />
+    <result column="description3" jdbcType="VARCHAR" property="description3" />
+    <result column="description4" jdbcType="VARCHAR" property="description4" />
+    <result column="photo1" jdbcType="VARCHAR" property="photo1" />
+    <result column="photo2" jdbcType="VARCHAR" property="photo2" />
+    <result column="photo3" jdbcType="VARCHAR" property="photo3" />
+    <result column="photo4" jdbcType="VARCHAR" property="photo4" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+    <result column="cost" jdbcType="VARCHAR" property="cost" />
+    <result column="object" jdbcType="VARCHAR" property="object" />
+    <result column="uid" jdbcType="VARCHAR" property="uid" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, name, theme, organizer1, organizer2, activitynumber, activitytime, signupcutofftime, 
+    browse, address, female, male, description1, description2, description3, description4, 
+    photo1, photo2, photo3, photo4, type, cost, object, uid
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_activity
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_activity
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xynl.www.domain.Activity">
+    insert into t_activity (id, name, theme, 
+      organizer1, organizer2, activitynumber, 
+      activitytime, signupcutofftime, browse, 
+      address, female, male, 
+      description1, description2, description3, 
+      description4, photo1, photo2, 
+      photo3, photo4, type, 
+      cost, object, uid)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{theme,jdbcType=VARCHAR}, 
+      #{organizer1,jdbcType=VARCHAR}, #{organizer2,jdbcType=VARCHAR}, #{activitynumber,jdbcType=INTEGER}, 
+      #{activitytime,jdbcType=VARCHAR}, #{signupcutofftime,jdbcType=VARCHAR}, #{browse,jdbcType=INTEGER}, 
+      #{address,jdbcType=VARCHAR}, #{female,jdbcType=INTEGER}, #{male,jdbcType=INTEGER}, 
+      #{description1,jdbcType=VARCHAR}, #{description2,jdbcType=VARCHAR}, #{description3,jdbcType=VARCHAR}, 
+      #{description4,jdbcType=VARCHAR}, #{photo1,jdbcType=VARCHAR}, #{photo2,jdbcType=VARCHAR}, 
+      #{photo3,jdbcType=VARCHAR}, #{photo4,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, 
+      #{cost,jdbcType=VARCHAR}, #{object,jdbcType=VARCHAR}, #{uid,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xynl.www.domain.Activity">
+    insert into t_activity
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="theme != null">
+        theme,
+      </if>
+      <if test="organizer1 != null">
+        organizer1,
+      </if>
+      <if test="organizer2 != null">
+        organizer2,
+      </if>
+      <if test="activitynumber != null">
+        activitynumber,
+      </if>
+      <if test="activitytime != null">
+        activitytime,
+      </if>
+      <if test="signupcutofftime != null">
+        signupcutofftime,
+      </if>
+      <if test="browse != null">
+        browse,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="female != null">
+        female,
+      </if>
+      <if test="male != null">
+        male,
+      </if>
+      <if test="description1 != null">
+        description1,
+      </if>
+      <if test="description2 != null">
+        description2,
+      </if>
+      <if test="description3 != null">
+        description3,
+      </if>
+      <if test="description4 != null">
+        description4,
+      </if>
+      <if test="photo1 != null">
+        photo1,
+      </if>
+      <if test="photo2 != null">
+        photo2,
+      </if>
+      <if test="photo3 != null">
+        photo3,
+      </if>
+      <if test="photo4 != null">
+        photo4,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="cost != null">
+        cost,
+      </if>
+      <if test="object != null">
+        object,
+      </if>
+      <if test="uid != null">
+        uid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="theme != null">
+        #{theme,jdbcType=VARCHAR},
+      </if>
+      <if test="organizer1 != null">
+        #{organizer1,jdbcType=VARCHAR},
+      </if>
+      <if test="organizer2 != null">
+        #{organizer2,jdbcType=VARCHAR},
+      </if>
+      <if test="activitynumber != null">
+        #{activitynumber,jdbcType=INTEGER},
+      </if>
+      <if test="activitytime != null">
+        #{activitytime,jdbcType=VARCHAR},
+      </if>
+      <if test="signupcutofftime != null">
+        #{signupcutofftime,jdbcType=VARCHAR},
+      </if>
+      <if test="browse != null">
+        #{browse,jdbcType=INTEGER},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="female != null">
+        #{female,jdbcType=INTEGER},
+      </if>
+      <if test="male != null">
+        #{male,jdbcType=INTEGER},
+      </if>
+      <if test="description1 != null">
+        #{description1,jdbcType=VARCHAR},
+      </if>
+      <if test="description2 != null">
+        #{description2,jdbcType=VARCHAR},
+      </if>
+      <if test="description3 != null">
+        #{description3,jdbcType=VARCHAR},
+      </if>
+      <if test="description4 != null">
+        #{description4,jdbcType=VARCHAR},
+      </if>
+      <if test="photo1 != null">
+        #{photo1,jdbcType=VARCHAR},
+      </if>
+      <if test="photo2 != null">
+        #{photo2,jdbcType=VARCHAR},
+      </if>
+      <if test="photo3 != null">
+        #{photo3,jdbcType=VARCHAR},
+      </if>
+      <if test="photo4 != null">
+        #{photo4,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="cost != null">
+        #{cost,jdbcType=VARCHAR},
+      </if>
+      <if test="object != null">
+        #{object,jdbcType=VARCHAR},
+      </if>
+      <if test="uid != null">
+        #{uid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xynl.www.domain.Activity">
+    update t_activity
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="theme != null">
+        theme = #{theme,jdbcType=VARCHAR},
+      </if>
+      <if test="organizer1 != null">
+        organizer1 = #{organizer1,jdbcType=VARCHAR},
+      </if>
+      <if test="organizer2 != null">
+        organizer2 = #{organizer2,jdbcType=VARCHAR},
+      </if>
+      <if test="activitynumber != null">
+        activitynumber = #{activitynumber,jdbcType=INTEGER},
+      </if>
+      <if test="activitytime != null">
+        activitytime = #{activitytime,jdbcType=VARCHAR},
+      </if>
+      <if test="signupcutofftime != null">
+        signupcutofftime = #{signupcutofftime,jdbcType=VARCHAR},
+      </if>
+      <if test="browse != null">
+        browse = #{browse,jdbcType=INTEGER},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="female != null">
+        female = #{female,jdbcType=INTEGER},
+      </if>
+      <if test="male != null">
+        male = #{male,jdbcType=INTEGER},
+      </if>
+      <if test="description1 != null">
+        description1 = #{description1,jdbcType=VARCHAR},
+      </if>
+      <if test="description2 != null">
+        description2 = #{description2,jdbcType=VARCHAR},
+      </if>
+      <if test="description3 != null">
+        description3 = #{description3,jdbcType=VARCHAR},
+      </if>
+      <if test="description4 != null">
+        description4 = #{description4,jdbcType=VARCHAR},
+      </if>
+      <if test="photo1 != null">
+        photo1 = #{photo1,jdbcType=VARCHAR},
+      </if>
+      <if test="photo2 != null">
+        photo2 = #{photo2,jdbcType=VARCHAR},
+      </if>
+      <if test="photo3 != null">
+        photo3 = #{photo3,jdbcType=VARCHAR},
+      </if>
+      <if test="photo4 != null">
+        photo4 = #{photo4,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="cost != null">
+        cost = #{cost,jdbcType=VARCHAR},
+      </if>
+      <if test="object != null">
+        object = #{object,jdbcType=VARCHAR},
+      </if>
+      <if test="uid != null">
+        uid = #{uid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xynl.www.domain.Activity">
+    update t_activity
+    set name = #{name,jdbcType=VARCHAR},
+      theme = #{theme,jdbcType=VARCHAR},
+      organizer1 = #{organizer1,jdbcType=VARCHAR},
+      organizer2 = #{organizer2,jdbcType=VARCHAR},
+      activitynumber = #{activitynumber,jdbcType=INTEGER},
+      activitytime = #{activitytime,jdbcType=VARCHAR},
+      signupcutofftime = #{signupcutofftime,jdbcType=VARCHAR},
+      browse = #{browse,jdbcType=INTEGER},
+      address = #{address,jdbcType=VARCHAR},
+      female = #{female,jdbcType=INTEGER},
+      male = #{male,jdbcType=INTEGER},
+      description1 = #{description1,jdbcType=VARCHAR},
+      description2 = #{description2,jdbcType=VARCHAR},
+      description3 = #{description3,jdbcType=VARCHAR},
+      description4 = #{description4,jdbcType=VARCHAR},
+      photo1 = #{photo1,jdbcType=VARCHAR},
+      photo2 = #{photo2,jdbcType=VARCHAR},
+      photo3 = #{photo3,jdbcType=VARCHAR},
+      photo4 = #{photo4,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      cost = #{cost,jdbcType=VARCHAR},
+      object = #{object,jdbcType=VARCHAR},
+      uid = #{uid,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+<!--  查询所有活动-->
+  <select id="findAll" resultType="com.xynl.www.domain.Activity">
+    select * from t_activity
+  </select>
+
+<!--  按条件查询活动-->
+  <select id="findByParameter" parameterType="com.xynl.www.domain.Activity" resultType="com.xynl.www.domain.Activity">
+    select * from t_activity
+    <where>
+      <if test="type != null and type != ''">
+        type like #{type}
+      </if>
+      <if test="address != null and address != ''">
+        address like #{address}
+      </if>
+    </where>
+  </select>
+
+<!--  修改参加用户id的集合-->
+  <update id="updateByParameter" parameterType="com.xynl.www.domain.Parameter">
+    update t_activity set uid = CONCAT(uid,';',#{i1}) where id = #{i2}
+  </update>
+  
+<!--  修改男性报名人数-->
+  <update id="updateMaleById" parameterType="java.lang.Integer">
+    update t_activity set male=(male+1) where id=#{id}
+  </update>
+
+  <!--  修改女性报名人数-->
+  <update id="updateFemaleById" parameterType="java.lang.Integer">
+    update t_activity set female=(female+1) where id=#{id}
+  </update>
+</mapper>
